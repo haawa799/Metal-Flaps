@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestScene: Scene {
+class FlapyScene: Scene {
     
     let gravity:CGFloat = 8.0
     let impuls:CGFloat = 5.0
@@ -32,12 +32,14 @@ class TestScene: Scene {
             
         )
         
-        super.init(name: "TestScene", baseEffect: baseEffect)
+        super.init(name: "FlapyScene", baseEffect: baseEffect)
         
         backgroundSquare.positionZ = -2
-        children.append(backgroundSquare)
-        children.append(ram)
-        children.append(pipe)
+        addChild(backgroundSquare)
+        addChild(ram)
+        addChild(pipe)
+        
+        self.prepareToDraw()
         
         positionX = 0
         positionY = 0

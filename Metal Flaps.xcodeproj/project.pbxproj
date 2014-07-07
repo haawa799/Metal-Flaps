@@ -35,8 +35,8 @@
 		438C24421966006E003DA3DB /* char_ram_col.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 438C243C1966006E003DA3DB /* char_ram_col.jpg */; };
 		438C244A1966009A003DA3DB /* Ram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C24481966009A003DA3DB /* Ram.swift */; };
 		438C244B1966009A003DA3DB /* ram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 438C24491966009A003DA3DB /* ram.txt */; };
-		438C244D19660B44003DA3DB /* MySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C244C19660B44003DA3DB /* MySceneViewController.swift */; };
-		43A481221966A07D0079B3AF /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A481211966A07D0079B3AF /* TestScene.swift */; };
+		438C244D19660B44003DA3DB /* FlapySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C244C19660B44003DA3DB /* FlapySceneViewController.swift */; };
+		43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A481211966A07D0079B3AF /* FlapyScene.swift */; };
 		43AD54BD195DAFB600C43C20 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BC195DAFB600C43C20 /* Square.swift */; };
 		43AD54BF195DB1E300C43C20 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BE195DB1E300C43C20 /* Cube.swift */; };
 /* End PBXBuildFile section */
@@ -90,8 +90,8 @@
 		438C243C1966006E003DA3DB /* char_ram_col.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = char_ram_col.jpg; sourceTree = "<group>"; };
 		438C24481966009A003DA3DB /* Ram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ram.swift; sourceTree = "<group>"; };
 		438C24491966009A003DA3DB /* ram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ram.txt; sourceTree = "<group>"; };
-		438C244C19660B44003DA3DB /* MySceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySceneViewController.swift; sourceTree = "<group>"; };
-		43A481211966A07D0079B3AF /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
+		438C244C19660B44003DA3DB /* FlapySceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlapySceneViewController.swift; sourceTree = "<group>"; };
+		43A481211966A07D0079B3AF /* FlapyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlapyScene.swift; sourceTree = "<group>"; };
 		43AD54BC195DAFB600C43C20 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		43AD54BE195DB1E300C43C20 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +192,7 @@
 				4388001B19655C6400043B15 /* FrameBuffer.m */,
 				435244D2195AC04000D62D63 /* AppDelegate.swift */,
 				435244D4195AC04000D62D63 /* MetalViewController.swift */,
-				438C244C19660B44003DA3DB /* MySceneViewController.swift */,
+				438C244C19660B44003DA3DB /* FlapySceneViewController.swift */,
 				435244D5195AC04000D62D63 /* Storyboard.storyboard */,
 			);
 			path = Main;
@@ -224,7 +224,7 @@
 				437D5DA5195D649E003CCCF4 /* Matrix4.m */,
 				435244E4195AC66800D62D63 /* Node.swift */,
 				4372B1D31967148000567EEC /* Scene.swift */,
-				43A481211966A07D0079B3AF /* TestScene.swift */,
+				43A481211966A07D0079B3AF /* FlapyScene.swift */,
 				43AD54BE195DB1E300C43C20 /* Cube.swift */,
 				43AD54BC195DAFB600C43C20 /* Square.swift */,
 				434BE7A119687AD50005C022 /* RatioSquare.swift */,
@@ -361,9 +361,9 @@
 				435244D8195AC04000D62D63 /* MetalViewController.swift in Sources */,
 				4372B1D41967148000567EEC /* Scene.swift in Sources */,
 				43AD54BF195DB1E300C43C20 /* Cube.swift in Sources */,
-				438C244D19660B44003DA3DB /* MySceneViewController.swift in Sources */,
+				438C244D19660B44003DA3DB /* FlapySceneViewController.swift in Sources */,
 				434BE7A219687AD50005C022 /* RatioSquare.swift in Sources */,
-				43A481221966A07D0079B3AF /* TestScene.swift in Sources */,
+				43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */,
 				435244E2195AC56B00D62D63 /* Vertex.swift in Sources */,
 				435244E0195AC56B00D62D63 /* BaseEffect.swift in Sources */,
 				438800191965558F00043B15 /* MetalView.swift in Sources */,

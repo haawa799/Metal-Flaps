@@ -7,12 +7,16 @@
 //
 //
 //
+/////////////////////////////////////////////
+//
 //  Node class is a base class in game graph, it provides you ability to change transformation of node and all his
 //  children. It provide you material specs such as shininess, specularIntensity etc. You should not draw node
 //  itself using renderNode, but u should put your node inside Scene and call render(..) on Scene object.
 //
+//  Usualy Node subclasses are generated from 3D model files however you can take a look at Cube.swift for some 
+//  primitive object
 //
-///////////////////
+/////////////////////////////////////////////
 
 import UIKit
 import Metal
@@ -21,9 +25,6 @@ import QuartzCore
 
 @objc class Node: NSObject
 {
-    class var numberOfUniformBuffersToUse:Int {
-        return 3*10
-    }
     
     var time:CFTimeInterval = 0.0
     
@@ -54,14 +55,15 @@ import QuartzCore
     
     // array of children nodes, you should never add or remove item from it directly, only throu addChild and removeChild
     var children:Array<Node> = Array<Node>()
+    var numberOfSiblings: Int = 1
     
     //shaders input data
     var vertexBuffer: MTLBuffer?
-    var uniformBufferGenerator: AnyObject
     var uniformsBuffer: MTLBuffer?
     var samplerState: MTLSamplerState?
     
-    var avaliableUniformBuffers = dispatch_semaphore_create(numberOfUniformBuffersToUse)
+    var uniformBufferProvider: AnyObject?
+    
     
     init(name: String,
         baseEffect: BaseEffect,
@@ -80,8 +82,6 @@ import QuartzCore
         self.name = name
         self.baseEffect = baseEffect
         self.vertexCount = vertexCount
-        
-        self.uniformBufferGenerator = UniformsBufferGenerator(numberOfInflightBuffers: CInt(Node.numberOfUniformBuffersToUse), withDevice: baseEffect.device)
         
         super.init()
         
@@ -139,6 +139,31 @@ import QuartzCore
         return commandEncoder
     }
     
+    func addChild(child: Node)
+    {
+        numberOfSiblings += child.numberOfSiblings
+        children.append(child)
+    }
+    
+    func removeChild(child: Node)
+    {
+        numberOfSiblings -= child.numberOfSiblings
+        var indexes = Array<Int>()
+        for (index, value) in enumerate(children) {
+            if value == child
+            {
+                indexes.append(index)
+            }
+        }
+        for index in indexes
+        {
+            children.removeAtIndex(index)
+        }
+        
+        children.removeAtIndex(0)
+    }
+    
+    // Transformation
     func setScale(scale: Float)
     {
         scaleX = scale
@@ -164,6 +189,7 @@ import QuartzCore
         }
     }
     
+    // Generators of buffers which are passed to GPU
     func generateSamplerStateForTexture(device: MTLDevice) -> MTLSamplerState?
     {
         var pSamplerDescriptor:MTLSamplerDescriptor? = MTLSamplerDescriptor();
@@ -189,12 +215,11 @@ import QuartzCore
         return device.newSamplerStateWithDescriptor(pSamplerDescriptor)
     }
     
-    // Two following methods are used as a glue for Objective-C buffer generator code and Swift code
     func getUniformsBuffer(mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
     {
         var mv:Matrix4 = mvMatrix as Matrix4
         var proj:Matrix4 = projMatrix as Matrix4
-        var generator: UniformsBufferGenerator = self.uniformBufferGenerator as UniformsBufferGenerator
+        var generator: UniformsBufferGenerator = self.uniformBufferProvider as UniformsBufferGenerator
         uniformsBuffer = generator.bufferWithProjectionMatrix(proj, modelViewMatrix: mv, withBaseEffect: baseEffect, withModel: self)
         return uniformsBuffer
     }

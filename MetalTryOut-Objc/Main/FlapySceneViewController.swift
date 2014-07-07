@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MySceneViewController: MetalViewController {
+class FlapySceneViewController: MetalViewController {
 
 
     // UIViewController
@@ -28,7 +28,7 @@ class MySceneViewController: MetalViewController {
         
         //
         
-        var fscene = TestScene(baseEffect: fbaseEffect, bounds: self.view.bounds)
+        var fscene = FlapyScene(baseEffect: fbaseEffect, bounds: self.view.bounds)
         setupMetal(fbaseEffect, scene: fscene)
     }
     
@@ -36,7 +36,7 @@ class MySceneViewController: MetalViewController {
     
     func flap()
     {
-        if let tScene = scene as? TestScene
+        if let tScene = scene as? FlapyScene
         {
             tScene.flap()
         }

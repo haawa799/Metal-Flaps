@@ -9,10 +9,20 @@
 import UIKit
 
 class Scene: Node {
+
+    
+    var avaliableUniformBuffers: dispatch_semaphore_t?
     
     init(name: String, baseEffect: BaseEffect)
     {
         super.init(name: name, baseEffect: baseEffect, vertices: nil, vertexCount: 0, textureName: nil)
+    }
+    
+    func prepareToDraw()
+    {
+        var numberOfUniformBuffersToUse = 3*self.numberOfSiblings
+        avaliableUniformBuffers = dispatch_semaphore_create(numberOfUniformBuffersToUse)
+        self.uniformBufferProvider = UniformsBufferGenerator(numberOfInflightBuffers: CInt(numberOfUniformBuffersToUse), withDevice: baseEffect.device)
     }
     
     func render(commandQueue: MTLCommandQueue, metalView: MetalView, parentMVMatrix: AnyObject)
@@ -22,7 +32,6 @@ class Scene: Node {
         var myModelViewMatrix: Matrix4 = modelMatrix() as Matrix4
         myModelViewMatrix.multiplyLeft(parentModelViewMatrix)
         var projectionMatrix: Matrix4 = baseEffect.projectionMatrix as Matrix4
-        self.uniformsBuffer = getUniformsBuffer(myModelViewMatrix, projMatrix: projectionMatrix, baseEffect: baseEffect)
         
         
         //We are using 3 uniform buffers, we need to wait in case CPU wants to write in first uniform buffer, while GPU is still using it (case when GPU is 2 frames ahead CPU)
