@@ -5,6 +5,14 @@
 //  Created by Andrew K. on 6/24/14.
 //  Copyright (c) 2014 Andrew Kharchyshyn. All rights reserved.
 //
+//
+//
+//  Node class is a base class in game graph, it provides you ability to change transformation of node and all his
+//  children. It provide you material specs such as shininess, specularIntensity etc. You should not draw node
+//  itself using renderNode, but u should put your node inside Scene and call render(..) on Scene object.
+//
+//
+///////////////////
 
 import UIKit
 import Metal
@@ -19,35 +27,39 @@ import QuartzCore
     
     var time:CFTimeInterval = 0.0
     
+    //initial values
     var baseEffect: BaseEffect
     var name: String
     var vertexCount: Int
     var texture: MTLTexture?
     var depthState: MTLDepthStencilState?
     
+    //animation handles
     var positionX:Float = 0.0
     var positionY:Float = 0.0
     var positionZ:Float = 0.0
-    
     var rotationX:Float = 0.0
     var rotationY:Float = 0.0
     var rotationZ:Float = 0.0
+    var scaleX:Float    = 1.0
+    var scaleY:Float    = 1.0
+    var scaleZ:Float    = 1.0
     
-    var scaleX:Float     = 1.0
-    var scaleY:Float     = 1.0
-    var scaleZ:Float     = 1.0
-    
-    var children:Array<Node> = Array<Node>()
-    
-    var vertexBuffer: MTLBuffer?
-    var uniformBufferGenerator: AnyObject
-    var uniformsBuffer: MTLBuffer?
-    var samplerState: MTLSamplerState?
-    
+    //light specs
     var diffuseIntensity: Float = 1.0
     var ambientIntensity: Float = 1.0
     var specularIntensity: Float = 1.0
     var shininess: Float = 1.0
+    
+    
+    // array of children nodes, you should never add or remove item from it directly, only throu addChild and removeChild
+    var children:Array<Node> = Array<Node>()
+    
+    //shaders input data
+    var vertexBuffer: MTLBuffer?
+    var uniformBufferGenerator: AnyObject
+    var uniformsBuffer: MTLBuffer?
+    var samplerState: MTLSamplerState?
     
     var avaliableUniformBuffers = dispatch_semaphore_create(numberOfUniformBuffersToUse)
     
@@ -77,7 +89,7 @@ import QuartzCore
         {
             self.vertexBuffer = generateVertexBuffer(trueVertices, vertexCount: vertexCount, device: baseEffect.device)
         }
-//        vertices.removeAll(keepCapacity: false)
+        
         self.samplerState = generateSamplerStateForTexture(baseEffect.device)
         
         var depthStateDesc = MTLDepthStencilDescriptor()
@@ -86,6 +98,8 @@ import QuartzCore
         depthState = baseEffect.device.newDepthStencilStateWithDescriptor(depthStateDesc)
     }
     
+    
+    //this method is only used by scene object to render it's children recursively
     func renderNode(node: Node, parentMatrix: AnyObject, projectionMatrix: AnyObject, renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer, encoder: MTLRenderCommandEncoder?) -> MTLRenderCommandEncoder
     {
         var commandEncoder:MTLRenderCommandEncoder
