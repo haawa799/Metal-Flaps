@@ -34,13 +34,12 @@ import Metal
         pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.FormatDepth32Float
         pipeLineDescriptor.visibilityResultEnabled = true
         
-//        var colorDescriptor = MTLRenderPipelineAttachmentDescriptor()
-//        colorDescriptor.pixelFormat = .FormatBGRA8Unorm
-//        
-//        var depthDescriptor = MTLRenderPipelineAttachmentDescriptor()
-//        depthDescriptor.pixelFormat = .FormatBGRA8Unorm
+        var colorDescriptor = MTLRenderPipelineAttachmentDescriptor()
+        colorDescriptor.pixelFormat = .FormatBGRA8Unorm
         
-//        pipeLineDescriptor.colorAttachments[0] = colorDescriptor
+        pipeLineDescriptor.colorAttachments[0] = colorDescriptor
+        pipeLineDescriptor.depthAttachmentPixelFormat = .FormatBGRA8Unorm
+        pipeLineDescriptor.stencilAttachmentPixelFormat = .FormatStencil8
         
         super.init()
     }
