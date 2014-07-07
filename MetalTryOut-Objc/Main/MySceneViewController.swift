@@ -10,8 +10,8 @@ import UIKit
 
 class MySceneViewController: MetalViewController {
 
-//    var scene: TestScene!
-//    var baseEffect: BaseEffect!
+
+    // UIViewController
     
     override func viewDidLoad()
     {
@@ -32,19 +32,7 @@ class MySceneViewController: MetalViewController {
         setupMetal(fbaseEffect, scene: fscene)
     }
     
-    override func tearDownMetal()
-    {
-        scene = nil
-        baseEffect = nil
-    }
-    
-    override func update(elapsed: CFTimeInterval)
-    {
-        
-        var matrix: Matrix4 = Matrix4()
-        scene!.render(commandQ, metalView: metalView, parentMVMatrix: matrix)
-        scene!.updateWithDelta(elapsed)
-    }
+    // MySceneViewController
     
     func flap()
     {
