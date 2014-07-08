@@ -26,7 +26,7 @@ class FlapySceneViewController: MetalViewController {
         
         //
         
-        var fscene = FlapyScene(baseEffect: fbaseEffect, bounds: self.view.bounds)
+        var fscene = FlapyScene(baseEffect: fbaseEffect, view: self.view)
         setupMetal(fbaseEffect, scene: fscene)
     }
     

@@ -17,7 +17,6 @@ class Scene: Node {
     var height: Float = 0.0
     
     let perspectiveAngleRad: Float = Matrix4.degreesToRad(85.0)
-    
     var sceneOffsetZ: Float = 0.0
     
 //    var projectionMatrix: AnyObject
@@ -31,9 +30,11 @@ class Scene: Node {
         var ratio: Float = Float(width) / Float(height)
         
     
-        baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(perspectiveAngleRad, aspectRatio: ratio, nearZ: 1, farZ: sceneOffsetZ + (width * 0.5))
+        baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(perspectiveAngleRad, aspectRatio: ratio, nearZ: 0.1, farZ: 1.5*sceneOffsetZ)
         
         super.init(name: name, baseEffect: baseEffect, vertices: nil, vertexCount: 0, textureName: nil)
+        
+        positionZ = -1*sceneOffsetZ
     }
     
     func prepareToDraw()

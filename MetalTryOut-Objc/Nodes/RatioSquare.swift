@@ -18,8 +18,8 @@ class RatioSquare: Square {
         
         super.init(baseEffect: baseEffect, textureName: textureName)
         
-        self.scaleX = width
-        self.scaleY = height
+        self.scaleX = width*0.5
+        self.scaleY = height*0.5
     }
     
     override func updateWithDelta(delta: CFTimeInterval)

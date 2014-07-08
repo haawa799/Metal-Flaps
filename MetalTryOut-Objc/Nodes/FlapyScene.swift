@@ -10,8 +10,8 @@ import UIKit
 
 class FlapyScene: Scene {
     
-    let gravity:CGFloat = 8.0
-    let impuls:CGFloat = 5.0
+    let gravity:CGFloat = 800.0
+    let impuls:CGFloat = 500.0
     
     var ram: Ram
     var backgroundSquare: RatioSquare
@@ -23,21 +23,28 @@ class FlapyScene: Scene {
     var playerVelocity = CGPoint(x: 0.0, y: 0.0)
     var verticalVelocity = 0.0
     
-    init(baseEffect: BaseEffect, bounds: CGRect)
+    init(baseEffect: BaseEffect, view: UIView)
     {
         ram = Ram(baseEffect: baseEffect)
-        ram.setScale(0.9)
+        ram.setScale(25)
+        ram.positionZ = 100
         
         pipe = Pipe(baseEffect: baseEffect)
-        pipe.initialTransformation.rotateAroundX(Matrix4.degreesToRad(-90.0), y: 0.0, z: 0.0)
+        pipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(90.0), y: 0.0, z: 0.0)
+//        pipe.initialWidth = 180
+//        pipe.initialHeight = 500
+//        pipe.initialDepth = 180
+        pipe.setScale(25)
+        pipe.positionY = 300
+        pipe.positionZ = 100
         
-        var sceneWidth = Float(bounds.size.width)
-        var sceneHeight = Float(bounds.size.height)
+        var sceneWidth = Float(view.bounds.size.width) * Float(view.contentScaleFactor)
+        var sceneHeight = Float(view.bounds.size.height) * Float(view.contentScaleFactor)
         
         backgroundSquare = RatioSquare(baseEffect: baseEffect, textureName: "bg.jpg", width: sceneWidth, height: sceneHeight)
         
         super.init(name: "FlapyScene", baseEffect: baseEffect, width: sceneWidth, height: sceneHeight)
-        backgroundSquare.positionZ = -sceneOffsetZ
+//        backgroundSquare.positionZ = -180
         
         
         addChild(backgroundSquare)
@@ -45,12 +52,7 @@ class FlapyScene: Scene {
         addChild(pipe)
         
         self.prepareToDraw()
-        
-        positionX = 0
-        positionY = 0
-        positionZ = -5
-        setScale(1.0)
-        
+
     }
     
     override func updateWithDelta(delta: CFTimeInterval)
@@ -74,8 +76,9 @@ class FlapyScene: Scene {
         var velocityStep = CGPoint(x: playerVelocity.x * CGFloat(delta), y: playerVelocity.y * CGFloat(delta))
         ram.positionY = Float(ram.positionY) + Float(velocityStep.y)
         // Temporary halt when hits ground
-        if (ram.positionY <= -4.8) {
-            ram.positionY = -4.8
+        if (ram.positionY <= 0.0-height*0.5) {
+            ram.positionY = 0.0-height*0.5
+            println(height)
         }
     }
     
