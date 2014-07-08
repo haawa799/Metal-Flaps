@@ -17,7 +17,7 @@ import Metal
     var projectionMatrix:AnyObject = Matrix4()
     
     var lightColor = MTLClearColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    var lightDirection: Float[] = [0.0,0.0,0.0]
+    var lightDirection: [Float] = [0.0,0.0,0.0]
     
     init(device:MTLDevice ,vertexShaderName: String, fragmentShaderName:String)
     {
@@ -28,18 +28,15 @@ import Metal
         var library = device.newDefaultLibrary()
         pipeLineDescriptor.vertexFunction = library.newFunctionWithName(vertexShaderName)
         pipeLineDescriptor.fragmentFunction = library.newFunctionWithName(fragmentShaderName)
-        pipeLineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.FormatBGRA8Unorm
+        pipeLineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.BGRA8Unorm
         pipeLineDescriptor.depthWriteEnabled = true
         pipeLineDescriptor.sampleCount = 4
-        pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.FormatDepth32Float
+        pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.Depth32Float
         pipeLineDescriptor.visibilityResultEnabled = true
         
-        var colorDescriptor = MTLRenderPipelineAttachmentDescriptor()
-        colorDescriptor.pixelFormat = .FormatBGRA8Unorm
-        
-        pipeLineDescriptor.colorAttachments[0] = colorDescriptor
-        pipeLineDescriptor.depthAttachmentPixelFormat = .FormatBGRA8Unorm
-        pipeLineDescriptor.stencilAttachmentPixelFormat = .FormatStencil8
+        pipeLineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
+        pipeLineDescriptor.depthAttachmentPixelFormat = .BGRA8Unorm
+        pipeLineDescriptor.stencilAttachmentPixelFormat = .Stencil8
         
         super.init()
     }

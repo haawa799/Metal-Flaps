@@ -10,7 +10,7 @@
     
     let rows: Int = 4
     let columns: Int = 4
-    var grid: Float[]
+    var grid: [Float]
     
     init() {
         grid = Array(count: rows * columns, repeatedValue: 0.0)

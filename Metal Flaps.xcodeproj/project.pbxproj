@@ -10,7 +10,6 @@
 		4304BFE8195455A800326016 /* MetalTryOut_ObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4304BFE7195455A800326016 /* MetalTryOut_ObjcTests.m */; };
 		431E367C19605D6400E1A800 /* bricks.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 431E367B19605D6400E1A800 /* bricks.jpeg */; };
 		433662E019658DA700D516B7 /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = 433662DF19658DA700D516B7 /* smiley.png */; };
-		434418FE195C474100D73ACE /* Matrix4x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434418FD195C474100D73ACE /* Matrix4x4.swift */; };
 		43441901195C478400D73ACE /* UniformsBufferGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 43441900195C478400D73ACE /* UniformsBufferGenerator.m */; };
 		43479286195AC83E00FA2962 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43479282195AC83E00FA2962 /* Images.xcassets */; };
 		43479288195AC83E00FA2962 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 43479284195AC83E00FA2962 /* screenshot.png */; };
@@ -58,7 +57,6 @@
 		4304BFE7195455A800326016 /* MetalTryOut_ObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetalTryOut_ObjcTests.m; sourceTree = "<group>"; };
 		431E367B19605D6400E1A800 /* bricks.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bricks.jpeg; sourceTree = "<group>"; };
 		433662DF19658DA700D516B7 /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
-		434418FD195C474100D73ACE /* Matrix4x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4.swift; sourceTree = "<group>"; };
 		434418FF195C478400D73ACE /* UniformsBufferGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformsBufferGenerator.h; sourceTree = "<group>"; };
 		43441900195C478400D73ACE /* UniformsBufferGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniformsBufferGenerator.m; sourceTree = "<group>"; };
 		43479282195AC83E00FA2962 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			children = (
 				434BE7B6196978300005C022 /* Pipe */,
 				438C243B1966006E003DA3DB /* Ram */,
-				434418FD195C474100D73ACE /* Matrix4x4.swift */,
 				437D5DA4195D649E003CCCF4 /* Matrix4.h */,
 				437D5DA5195D649E003CCCF4 /* Matrix4.m */,
 				435244E4195AC66800D62D63 /* Node.swift */,
@@ -355,7 +352,6 @@
 				438345AA1960739C00D98C92 /* METLTexture.m in Sources */,
 				434BE7B419696A410005C022 /* Pipe.swift in Sources */,
 				435244E6195AC66800D62D63 /* Node.swift in Sources */,
-				434418FE195C474100D73ACE /* Matrix4x4.swift in Sources */,
 				435244D6195AC04000D62D63 /* AppDelegate.swift in Sources */,
 				435244E3195AC56B00D62D63 /* VertexBufferGenerator.m in Sources */,
 				435244D8195AC04000D62D63 /* MetalViewController.swift in Sources */,

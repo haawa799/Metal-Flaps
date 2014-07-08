@@ -45,6 +45,13 @@ struct VertexOut
     float  shininess;
 };
 
+float4x4 mv_MatrixFromUniformBuffer(constant Uniforms&  uniformMatrix);
+float4x4 proj_MatrixFromUniformBuffer(constant Uniforms&  uniformMatrix);
+
+//=====================
+// Helping functions
+//=====================
+
 float4x4 mv_MatrixFromUniformBuffer(constant Uniforms&  uniformMatrix)
 {
     float4x4 matrix;
@@ -71,7 +78,11 @@ float4x4 proj_MatrixFromUniformBuffer(constant Uniforms&  uniformMatrix)
     return matrix;
 }
 
-vertex VertexOut myVertexShader(const    global Vertex*    vertexArray   [[buffer(0)]],
+//============
+// Shaders
+//============
+
+vertex VertexOut myVertexShader(const device Vertex*    vertexArray   [[buffer(0)]],
                                 constant        Uniforms&  uniforms      [[buffer(1)]],
                                 unsigned        int        vid           [[vertex_id]])
 {
