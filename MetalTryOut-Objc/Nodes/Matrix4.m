@@ -25,6 +25,13 @@
     return matrix;
 }
 
+- (instancetype)copy
+{
+    Matrix4 *mCopy = [[Matrix4 alloc] init];
+    mCopy->glkMatrix = self->glkMatrix;
+    return mCopy;
+}
+
 -(instancetype)init
 {
     self = [super init];

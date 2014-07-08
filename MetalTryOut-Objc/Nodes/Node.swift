@@ -46,6 +46,8 @@ import QuartzCore
     var scaleY:Float    = 1.0
     var scaleZ:Float    = 1.0
     
+    var initialTransformation:AnyObject = Matrix4()
+    
     //light specs
     var diffuseIntensity: Float = 1.0
     var ambientIntensity: Float = 1.0
@@ -173,10 +175,13 @@ import QuartzCore
     
     func modelMatrix() -> AnyObject //AnyObject is used as a workaround against comiler error, waiting for fix in following betas
     {
+        var initialMatCopy: Matrix4 = (initialTransformation as Matrix4).copy()
         var matrix = Matrix4()
         matrix.rotateAroundX(rotationX, y: rotationY, z: rotationZ)
         matrix.translate(positionX, y: positionY, z: positionZ)
         matrix.scale(scaleX, y: scaleY, z: scaleZ)
+        matrix.multiplyLeft(initialMatCopy)
+//        initialMatCopy.multiplyLeft(matrix)
         return matrix
     }
     

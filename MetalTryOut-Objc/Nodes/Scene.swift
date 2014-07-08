@@ -13,8 +13,26 @@ class Scene: Node {
     
     var avaliableUniformBuffers: dispatch_semaphore_t?
     
-    init(name: String, baseEffect: BaseEffect)
+    var width: Float = 0.0
+    var height: Float = 0.0
+    
+    let perspectiveAngleRad: Float = Matrix4.degreesToRad(85.0)
+    
+    var sceneOffsetZ: Float = 0.0
+    
+//    var projectionMatrix: AnyObject
+    
+    init(name: String, baseEffect: BaseEffect, width: Float, height: Float)
     {
+        self.width = width
+        self.height = height
+        
+        sceneOffsetZ = (height * 0.5) / tanf(perspectiveAngleRad * 0.5)
+        var ratio: Float = Float(width) / Float(height)
+        
+    
+        baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(perspectiveAngleRad, aspectRatio: ratio, nearZ: 1, farZ: sceneOffsetZ + (width * 0.5))
+        
         super.init(name: name, baseEffect: baseEffect, vertices: nil, vertexCount: 0, textureName: nil)
     }
     

@@ -29,9 +29,6 @@ import UIKit
         self.specularIntensity = 0.200000
         self.shininess = 0.098039
         
-        self.rotationX = Matrix4.degreesToRad(-90.0)
-        self.rotationZ = Matrix4.degreesToRad(90.0)
-
     }
     
     override func updateWithDelta(delta: CFTimeInterval)

@@ -84,8 +84,8 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     {
         if let baseEffect = baseEffect
         {
-            var ratio: Float = Float(self.view.bounds.size.width) / Float(self.view.bounds.size.height)
-            baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degreesToRad(85.0), aspectRatio: ratio, nearZ: 1.0, farZ: 150.0)
+//            var ratio: Float = Float(self.view.bounds.size.width) / Float(self.view.bounds.size.height)
+//            scene!.projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degreesToRad(85.0), aspectRatio: ratio, nearZ: 1.0, farZ: 150.0)
         }
     }
     

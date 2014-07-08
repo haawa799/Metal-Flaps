@@ -25,6 +25,8 @@
                                 nearZ:(float)nearZ
                                  farZ:(float)farZ;
 
+- (instancetype)copy;
+
 - (void)transpose;
 
 - (void)multiplyLeft:(Matrix4 *)matrix;

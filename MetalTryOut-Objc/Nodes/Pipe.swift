@@ -28,14 +28,13 @@ import UIKit
 
         
         self.setScale(0.5)
-        self.rotationZ = Matrix4.degreesToRad(-90.0)
     }
     
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
         super.updateWithDelta(delta)
-        rotationY += Float(M_PI/2) * Float(delta)
+        rotationZ += Float(M_PI/2) * Float(delta)
     }
 
 }

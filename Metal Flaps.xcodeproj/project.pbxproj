@@ -18,7 +18,6 @@
 		434BE7A4196945290005C022 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 434BE7A3196945290005C022 /* bg.jpg */; };
 		434BE7B11969677C0005C022 /* pip.png in Resources */ = {isa = PBXBuildFile; fileRef = 434BE7B01969677C0005C022 /* pip.png */; };
 		434BE7B419696A410005C022 /* Pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434BE7B219696A410005C022 /* Pipe.swift */; };
-		434BE7B519696A410005C022 /* pipe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 434BE7B319696A410005C022 /* pipe.txt */; };
 		435244D6195AC04000D62D63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435244D2195AC04000D62D63 /* AppDelegate.swift */; };
 		435244D8195AC04000D62D63 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435244D4195AC04000D62D63 /* MetalViewController.swift */; };
 		435244D9195AC04000D62D63 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435244D5195AC04000D62D63 /* Storyboard.storyboard */; };
@@ -30,11 +29,12 @@
 		4372B1D41967148000567EEC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372B1D31967148000567EEC /* Scene.swift */; };
 		437D5DA6195D649E003CCCF4 /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D5DA5195D649E003CCCF4 /* Matrix4.m */; };
 		438345AA1960739C00D98C92 /* METLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 438345A91960739C00D98C92 /* METLTexture.m */; };
+		4383CE14196BFAEE008B21D4 /* ram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4383CE13196BFAEE008B21D4 /* ram.txt */; };
+		4383CE16196BFD84008B21D4 /* pipe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4383CE15196BFD84008B21D4 /* pipe.txt */; };
 		438800191965558F00043B15 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438800181965558F00043B15 /* MetalView.swift */; };
 		4388001C19655C6400043B15 /* FrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4388001B19655C6400043B15 /* FrameBuffer.m */; };
 		438C24421966006E003DA3DB /* char_ram_col.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 438C243C1966006E003DA3DB /* char_ram_col.jpg */; };
 		438C244A1966009A003DA3DB /* Ram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C24481966009A003DA3DB /* Ram.swift */; };
-		438C244B1966009A003DA3DB /* ram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 438C24491966009A003DA3DB /* ram.txt */; };
 		438C244D19660B44003DA3DB /* FlapySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C244C19660B44003DA3DB /* FlapySceneViewController.swift */; };
 		43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A481211966A07D0079B3AF /* FlapyScene.swift */; };
 		43AD54BD195DAFB600C43C20 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BC195DAFB600C43C20 /* Square.swift */; };
@@ -69,7 +69,6 @@
 		434BE7A3196945290005C022 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		434BE7B01969677C0005C022 /* pip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pip.png; sourceTree = "<group>"; };
 		434BE7B219696A410005C022 /* Pipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipe.swift; sourceTree = "<group>"; };
-		434BE7B319696A410005C022 /* pipe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe.txt; sourceTree = "<group>"; };
 		435244D2195AC04000D62D63 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		435244D4195AC04000D62D63 /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
 		435244D5195AC04000D62D63 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -84,12 +83,13 @@
 		437D5DA5195D649E003CCCF4 /* Matrix4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix4.m; sourceTree = "<group>"; };
 		438345A81960739C00D98C92 /* METLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METLTexture.h; sourceTree = "<group>"; };
 		438345A91960739C00D98C92 /* METLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METLTexture.m; sourceTree = "<group>"; };
+		4383CE13196BFAEE008B21D4 /* ram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ram.txt; sourceTree = "<group>"; };
+		4383CE15196BFD84008B21D4 /* pipe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe.txt; sourceTree = "<group>"; };
 		438800181965558F00043B15 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		4388001A19655C6400043B15 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
 		4388001B19655C6400043B15 /* FrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameBuffer.m; sourceTree = "<group>"; };
 		438C243C1966006E003DA3DB /* char_ram_col.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = char_ram_col.jpg; sourceTree = "<group>"; };
 		438C24481966009A003DA3DB /* Ram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ram.swift; sourceTree = "<group>"; };
-		438C24491966009A003DA3DB /* ram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ram.txt; sourceTree = "<group>"; };
 		438C244C19660B44003DA3DB /* FlapySceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlapySceneViewController.swift; sourceTree = "<group>"; };
 		43A481211966A07D0079B3AF /* FlapyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlapyScene.swift; sourceTree = "<group>"; };
 		43AD54BC195DAFB600C43C20 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				434BE7B219696A410005C022 /* Pipe.swift */,
-				434BE7B319696A410005C022 /* pipe.txt */,
+				4383CE15196BFD84008B21D4 /* pipe.txt */,
 				434BE7B01969677C0005C022 /* pip.png */,
 			);
 			name = Pipe;
@@ -236,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				438C24481966009A003DA3DB /* Ram.swift */,
-				438C24491966009A003DA3DB /* ram.txt */,
+				4383CE13196BFAEE008B21D4 /* ram.txt */,
 				438C243C1966006E003DA3DB /* char_ram_col.jpg */,
 			);
 			path = Ram;
@@ -323,12 +323,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				434BE7B11969677C0005C022 /* pip.png in Resources */,
-				434BE7B519696A410005C022 /* pipe.txt in Resources */,
+				4383CE16196BFD84008B21D4 /* pipe.txt in Resources */,
 				43479286195AC83E00FA2962 /* Images.xcassets in Resources */,
 				433662E019658DA700D516B7 /* smiley.png in Resources */,
 				434BE7A4196945290005C022 /* bg.jpg in Resources */,
-				438C244B1966009A003DA3DB /* ram.txt in Resources */,
 				435244E1195AC56B00D62D63 /* Shaders.metal in Resources */,
+				4383CE14196BFAEE008B21D4 /* ram.txt in Resources */,
 				435244D9195AC04000D62D63 /* Storyboard.storyboard in Resources */,
 				43479288195AC83E00FA2962 /* screenshot.png in Resources */,
 				431E367C19605D6400E1A800 /* bricks.jpeg in Resources */,
