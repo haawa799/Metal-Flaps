@@ -42,6 +42,7 @@ class Scene: Node {
         var numberOfUniformBuffersToUse = 3*self.numberOfSiblings
         avaliableUniformBuffers = dispatch_semaphore_create(numberOfUniformBuffersToUse)
         self.uniformBufferProvider = UniformsBufferGenerator(numberOfInflightBuffers: CInt(numberOfUniformBuffersToUse), withDevice: baseEffect.device)
+        
     }
     
     func render(commandQueue: MTLCommandQueue, metalView: MetalView, parentMVMatrix: AnyObject)
@@ -73,12 +74,7 @@ class Scene: Node {
         {
             var child = children[i]
             var lastChild = i == children.count - 1
-            commandEncoder = renderNode(child, parentMatrix: myModelViewMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPathDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder)
-        }
-        
-        if vertexCount > 0
-        {
-            commandEncoder = renderNode(self, parentMatrix: parentModelViewMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPathDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder)
+            commandEncoder = renderNode(child, parentMatrix: myModelViewMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPathDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformBufferProvider)
         }
         
         if let drawableAnyObject = metalView.frameBuffer.currentDrawable

@@ -39,6 +39,7 @@
 		43AD54BD195DAFB600C43C20 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BC195DAFB600C43C20 /* Square.swift */; };
 		43AD54BF195DB1E300C43C20 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BE195DB1E300C43C20 /* Cube.swift */; };
 		43F8EF9A196D3C20001E7E67 /* ResizingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F8EF99196D3C20001E7E67 /* ResizingNode.swift */; };
+		43F8EF9D196D4D5B001E7E67 /* PipeWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F8EF9C196D4D5B001E7E67 /* PipeWall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		43AD54BC195DAFB600C43C20 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		43AD54BE195DB1E300C43C20 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		43F8EF99196D3C20001E7E67 /* ResizingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingNode.swift; sourceTree = "<group>"; };
+		43F8EF9C196D4D5B001E7E67 /* PipeWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipeWall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 		435244DA195AC06A00D62D63 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				43F8EF9B196D4D41001E7E67 /* PipeWall */,
 				434BE7B6196978300005C022 /* Pipe */,
 				438C243B1966006E003DA3DB /* Ram */,
 				437D5DA4195D649E003CCCF4 /* Matrix4.h */,
@@ -240,6 +243,14 @@
 				438C243C1966006E003DA3DB /* char_ram_col.jpg */,
 			);
 			path = Ram;
+			sourceTree = "<group>";
+		};
+		43F8EF9B196D4D41001E7E67 /* PipeWall */ = {
+			isa = PBXGroup;
+			children = (
+				43F8EF9C196D4D5B001E7E67 /* PipeWall.swift */,
+			);
+			name = PipeWall;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +373,7 @@
 				43AD54BF195DB1E300C43C20 /* Cube.swift in Sources */,
 				438C244D19660B44003DA3DB /* FlapySceneViewController.swift in Sources */,
 				434BE7A219687AD50005C022 /* RatioSquare.swift in Sources */,
+				43F8EF9D196D4D5B001E7E67 /* PipeWall.swift in Sources */,
 				43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */,
 				435244E2195AC56B00D62D63 /* Vertex.swift in Sources */,
 				435244E0195AC56B00D62D63 /* BaseEffect.swift in Sources */,

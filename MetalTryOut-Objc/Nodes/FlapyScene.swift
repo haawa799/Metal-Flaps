@@ -17,6 +17,7 @@ class FlapyScene: Scene {
     var backgroundSquare: RatioSquare
     
     var pipe : Pipe
+    var pipeWall : PipeWall
     
     let numberOfSheeps = 1
     
@@ -33,6 +34,7 @@ class FlapyScene: Scene {
         ram.initialWidth = sceneWidth * 0.15
         ram.initialHeight = sceneWidth * 0.15
         ram.initialDepth = sceneWidth * 0.15
+        ram.positionZ = sceneWidth * 0.2
         
         
         
@@ -42,6 +44,10 @@ class FlapyScene: Scene {
         pipe.initialWidth = sceneWidth * 0.2
         pipe.initialHeight = sceneHeight * 0.2
         pipe.initialDepth = sceneWidth * 0.2
+
+
+        pipeWall = PipeWall(name: "PipeWall", baseEffect: baseEffect, heightBetween: sceneWidth * 0.5, height: sceneHeight, width: sceneWidth * 0.2)
+        pipeWall.positionZ = sceneWidth * 0.2
         
         backgroundSquare = RatioSquare(baseEffect: baseEffect, textureName: "bg.jpg", width: sceneWidth, height: sceneHeight)
         
@@ -51,7 +57,8 @@ class FlapyScene: Scene {
         
         addChild(backgroundSquare)
         addChild(ram)
-        addChild(pipe)
+//        addChild(pipe)
+        addChild(pipeWall)
         
         self.prepareToDraw()
 

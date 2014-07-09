@@ -105,7 +105,7 @@ import QuartzCore
     
     
     //this method is only used by scene object to render it's children recursively
-    func renderNode(node: Node, parentMatrix: AnyObject, projectionMatrix: AnyObject, renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer, encoder: MTLRenderCommandEncoder?) -> MTLRenderCommandEncoder
+    func renderNode(node: Node, parentMatrix: AnyObject, projectionMatrix: AnyObject, renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer, encoder: MTLRenderCommandEncoder?, uniformProvider: AnyObject?) -> MTLRenderCommandEncoder
     {
         var commandEncoder:MTLRenderCommandEncoder
         
@@ -127,16 +127,24 @@ import QuartzCore
         
         for child in node.children
         {
-            child.renderNode(node, parentMatrix: parentMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder)
+            println("count: \(node.children.count)")
+            println("\(child.name)")
+            var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
+            child.renderNode(child, parentMatrix: nodeModelMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformProvider)
         }
         
-        var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
-        nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
-        var uniform = getUniformsBuffer(nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
-        commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
-        commandEncoder.setVertexBuffer(uniformsBuffer, offset: 0, atIndex: 1)
-        commandEncoder.setFragmentTexture(node.texture, atIndex: 0)
-        commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, vertexStart: 0, vertexCount: node.vertexCount)
+        if node.vertexCount > 0
+        {
+            var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
+            var uniform = getUniformsBufferFromUniformsProvider(uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
+            commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
+            commandEncoder.setVertexBuffer(uniform, offset: 0, atIndex: 1)
+            commandEncoder.setFragmentTexture(node.texture, atIndex: 0)
+            println("vertex count \(node.vertexCount)")
+            commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, vertexStart: 0, vertexCount: node.vertexCount)
+        }
         
         
         commandEncoder.popDebugGroup()
@@ -146,6 +154,7 @@ import QuartzCore
     
     func addChild(child: Node)
     {
+        child.uniformBufferProvider = uniformBufferProvider
         numberOfSiblings += child.numberOfSiblings
         children.append(child)
     }
@@ -248,11 +257,11 @@ import QuartzCore
         return device.newSamplerStateWithDescriptor(pSamplerDescriptor)
     }
     
-    func getUniformsBuffer(mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
+    func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
     {
         var mv:Matrix4 = mvMatrix as Matrix4
         var proj:Matrix4 = projMatrix as Matrix4
-        var generator: UniformsBufferGenerator = self.uniformBufferProvider as UniformsBufferGenerator
+        var generator: UniformsBufferGenerator = provider as UniformsBufferGenerator
         uniformsBuffer = generator.bufferWithProjectionMatrix(proj, modelViewMatrix: mv, withBaseEffect: baseEffect, withModel: self)
         return uniformsBuffer
     }
