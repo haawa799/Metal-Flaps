@@ -69,6 +69,9 @@ class FlapyScene: Scene {
         addChild(backgroundSquare)
         addChild(ram)
         
+//        self.positionZ -= height * 0.4
+//        self.rotationY += Matrix4.degreesToRad(15.0)
+        
         self.prepareToDraw()
 
     }
@@ -102,6 +105,7 @@ class FlapyScene: Scene {
                 }
                 
                 pipe.positionX = pipeWalls[tag].positionX + gap + pipe.width
+                pipe.changeMidPointToRandomPoint(pipeWalls[tag])
             }
         }
     }
@@ -118,9 +122,12 @@ class FlapyScene: Scene {
         var velocityStep = CGPoint(x: playerVelocity.x * CGFloat(delta), y: playerVelocity.y * CGFloat(delta))
         ram.positionY = Float(ram.positionY) + Float(velocityStep.y)
         // Temporary halt when hits ground
-        if (ram.positionY <= 0.0-height*0.5) {
-            ram.positionY = 0.0-height*0.5
-            println(height)
+        if (ram.positionY <= 0.0-height*0.39) {
+            ram.positionY = 0.0-height*0.39
+        }
+        
+        if (ram.positionY >= 0.0+height*0.38) {
+            ram.positionY = 0.0+height*0.38
         }
     }
     
