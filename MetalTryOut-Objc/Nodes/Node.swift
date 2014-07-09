@@ -138,7 +138,7 @@ import QuartzCore
         {
             var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
             nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
-            var uniform = getUniformsBufferFromUniformsProvider(uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
+            var uniform = node.getUniformsBufferFromUniformsProvider(uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
             commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
             commandEncoder.setVertexBuffer(uniform, offset: 0, atIndex: 1)
             commandEncoder.setFragmentTexture(node.texture, atIndex: 0)

@@ -10,8 +10,8 @@ import UIKit
 
 class FlapyScene: Scene {
     
-    let gravity:CGFloat = 800.0
-    let impuls:CGFloat = 500.0
+    let gravity:CGFloat = 400.0
+    let impuls:CGFloat = 200.0
     
     var ram: Ram
     var backgroundSquare: RatioSquare
@@ -66,6 +66,8 @@ class FlapyScene: Scene {
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
+//        rotationY += Float(M_PI/5) * Float(delta)
+        
         updatePlayer(delta)
         for child in children
         {

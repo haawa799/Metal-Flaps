@@ -21,7 +21,7 @@ class FlapySceneViewController: MetalViewController {
         self.view.addGestureRecognizer(tapGesture)
         
         var fbaseEffect = BaseEffect(device: device, vertexShaderName: "myVertexShader", fragmentShaderName: "myFragmentShader")
-        fbaseEffect.lightDirection = [0.0,1.0,-1.0]
+        fbaseEffect.lightDirection = [0.0,0.0,-1.0]
         fbaseEffect.compile()
         
         //

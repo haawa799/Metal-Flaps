@@ -25,8 +25,8 @@ import UIKit
         verticesArray.removeAll(keepCapacity: false)
         
         self.ambientIntensity = 0.400000
-        self.diffuseIntensity = 0.8
-        self.specularIntensity = 0.200000
+        self.diffuseIntensity = 0.800000
+        self.specularIntensity = 0.000000
         self.shininess = 0.098039
         
     }

@@ -18,13 +18,12 @@ import UIKit
             }
         }
 
-
         super.init(name: "Pipe", baseEffect: baseEffect, vertices: verticesArray, vertexCount: verticesArray.count, textureName: "pip.png")
 
-        self.ambientIntensity = 0.000000
-        self.diffuseIntensity = 0.640000
-        self.specularIntensity = 0.500000
-        self.shininess = 96.078431
+        self.ambientIntensity = 0.800000
+        self.diffuseIntensity = 0.700000
+        self.specularIntensity = 0.800000
+        self.shininess = 8.078431
 
         
         self.setScale(0.5)
