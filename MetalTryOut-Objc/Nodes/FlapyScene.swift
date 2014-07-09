@@ -10,55 +10,64 @@ import UIKit
 
 class FlapyScene: Scene {
     
-    let gravity:CGFloat = 400.0
-    let impuls:CGFloat = 200.0
+    let gravity:CGFloat = 500.0
+    let impuls:CGFloat = 180.0
+    
+    var sceneWidth:Float = 0.0
+    var sceneHeight:Float = 0.0
     
     var ram: Ram
     var backgroundSquare: RatioSquare
     
-    var pipe : Pipe
-    var pipeWall : PipeWall
-    
-    let numberOfSheeps = 1
+    var pipeWalls : [PipeWall]
+    let numberOfPipes = 4
+    let startDelta:Float = 100.0
     
     var playerVelocity = CGPoint(x: 0.0, y: 0.0)
     var verticalVelocity = 0.0
+    var gap:Float = 0.0
+    var startOffset: Float = 0.0
+    
+    var lastPipeStartPos: Float = 0.0
+    
+    let pipesVelocity:Float = 40.0
     
     init(baseEffect: BaseEffect, view: UIView)
     {
         
-        var sceneWidth = Float(view.bounds.size.width)
-        var sceneHeight = Float(view.bounds.size.height)
+        sceneWidth = Float(view.bounds.size.width)
+        sceneHeight = Float(view.bounds.size.height)
+        
+        var pipeWidth:Float = sceneWidth * 0.2
+        
+        gap = (sceneWidth - 2*pipeWidth) * 0.5
+        startOffset = sceneWidth + startDelta
         
         ram = Ram(baseEffect: baseEffect)
-        ram.initialWidth = sceneWidth * 0.15
-        ram.initialHeight = sceneWidth * 0.15
-        ram.initialDepth = sceneWidth * 0.15
-        ram.positionZ = sceneWidth * 0.2
-        
-        
-        
-        pipe = Pipe(baseEffect: baseEffect)
-        pipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(-90.0), y: 0.0, z: 0.0)
-
-        pipe.initialWidth = sceneWidth * 0.2
-        pipe.initialHeight = sceneHeight * 0.2
-        pipe.initialDepth = sceneWidth * 0.2
-
-
-        pipeWall = PipeWall(name: "PipeWall", baseEffect: baseEffect, heightBetween: sceneWidth * 0.5, height: sceneHeight, width: sceneWidth * 0.2)
-        pipeWall.positionZ = sceneWidth * 0.2
-        
+        pipeWalls = Array<PipeWall>()
         backgroundSquare = RatioSquare(baseEffect: baseEffect, textureName: "bg.jpg", width: sceneWidth, height: sceneHeight)
         
         super.init(name: "FlapyScene", baseEffect: baseEffect, width: sceneWidth, height: sceneHeight)
 
+        for var i = 0; i<numberOfPipes; i++
+        {
+            var pipe = PipeWall(name: "pipeWall\(i)", baseEffect: baseEffect, heightBetween: 2*pipeWidth, height: sceneHeight, width: pipeWidth)
+            pipe.positionX = startOffset + (gap + pipeWidth)*Float(i)
+            pipe.positionZ = sceneWidth * 0.2
+            pipe.tag = i
+            pipeWalls.append(pipe)
+            addChild(pipe)
+        }
+        lastPipeStartPos = pipeWalls[numberOfPipes-1].positionX - startDelta
         
+        ram.initialWidth = sceneWidth * 0.15
+        ram.initialHeight = sceneWidth * 0.15
+        ram.initialDepth = sceneWidth * 0.15
+        ram.positionZ = sceneWidth * 0.2
+        ram.positionX = sceneWidth * -0.2
         
         addChild(backgroundSquare)
         addChild(ram)
-//        addChild(pipe)
-        addChild(pipeWall)
         
         self.prepareToDraw()
 
@@ -66,12 +75,34 @@ class FlapyScene: Scene {
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
-//        rotationY += Float(M_PI/5) * Float(delta)
+//        rotationY += Float(M_PI/8) * Float(delta)
         
         updatePlayer(delta)
+        updatePipes(delta)
         for child in children
         {
             child.updateWithDelta(delta)
+        }
+    }
+    
+    func updatePipes(delta: CFTimeInterval)
+    {
+        var deltaX = Float(delta) * pipesVelocity
+        
+        for pipe in pipeWalls
+        {
+            pipe.positionX -= deltaX
+            var leftMargin:Float = sceneWidth + pipe.width
+            if pipe.positionX <= -leftMargin
+            {
+                var tag = pipe.tag - 1
+                if tag == -1
+                {
+                    tag = numberOfPipes - 1
+                }
+                
+                pipe.positionX = pipeWalls[tag].positionX + gap + pipe.width
+            }
         }
     }
     

@@ -147,6 +147,6 @@ fragment float4 myFragmentShader(VertexOut interpolated [[stage_in]],
     
     
     
-    return (/*interpolated.color +*/ ambientColor + diffuseColor + specularColor) * tex2D.sample(sampler2D, interpolated.texCoord);
+    return (/*interpolated.color + */ambientColor + diffuseColor + specularColor) * tex2D.sample(sampler2D, interpolated.texCoord);
 }
 

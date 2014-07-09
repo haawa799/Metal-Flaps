@@ -30,7 +30,7 @@ class Scene: Node {
         var ratio: Float = Float(width) / Float(height)
         
     
-        baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(perspectiveAngleRad, aspectRatio: ratio, nearZ: 0.1, farZ: 1.5*sceneOffsetZ)
+        baseEffect.projectionMatrix = Matrix4.makePerspectiveViewAngle(perspectiveAngleRad, aspectRatio: ratio, nearZ: 0.1, farZ: 10.5*sceneOffsetZ)
         
         super.init(name: name, baseEffect: baseEffect, vertices: nil, vertexCount: 0, textureName: nil)
         

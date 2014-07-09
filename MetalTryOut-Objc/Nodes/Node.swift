@@ -69,6 +69,8 @@ import QuartzCore
     
     var uniformBufferProvider: AnyObject?
     
+    var tag = 0
+    
     
     init(name: String,
         baseEffect: BaseEffect,
