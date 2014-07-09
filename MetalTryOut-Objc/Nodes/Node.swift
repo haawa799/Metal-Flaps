@@ -47,9 +47,9 @@ import QuartzCore
     var scaleZ:Float    = 1.0
     
     var initialRotation:AnyObject = Matrix4()
-    var initialWidth:Float = 1.0
-    var initialHeight:Float = 1.0
-    var initialDepth:Float = 1.0
+    var initialWidth:Float?// = 1.0
+    var initialHeight:Float?// = 1.0
+    var initialDepth:Float?// = 1.0
     
     //light specs
     var diffuseIntensity: Float = 1.0
@@ -178,26 +178,38 @@ import QuartzCore
     
     func modelMatrix() -> AnyObject //AnyObject is used as a workaround against comiler error, waiting for fix in following betas
     {
-        var initialRotationMatCopy: Matrix4 = (initialRotation as Matrix4).copy()
-        //
-        var initialScaleMat = Matrix4()
-        initialScaleMat.scale(initialWidth, y: initialHeight, z: initialDepth)
-        //
-        var translMat = Matrix4()
-        translMat.translate(positionX, y: positionY, z: positionZ)
-        //
         var matrix = Matrix4()
-//        matrix.translate(positionX, y: positionY, z: positionZ)
+        
+        // Scale
+        var height: Float = 1.0
+        var width: Float = 1.0
+        var depth: Float = 1.0
+        if let initialWidth = initialWidth
+        {
+            width = initialWidth * 0.5
+        }
+        if let initialHeight = initialHeight
+        {
+            height = initialHeight * 0.5
+        }
+        if let initialDepth = initialDepth
+        {
+            depth = initialDepth * 0.5
+        }
+        matrix.scale(scaleX * width, y: scaleY * height, z: scaleZ * depth)
+        
+        //Rotate
+        var initialRotationMatCopy: Matrix4 = (initialRotation as Matrix4).copy()
         matrix.rotateAroundX(rotationX, y: rotationY, z: rotationZ)
-        matrix.scale(scaleX, y: scaleY, z: scaleZ)
-        
-        
         matrix.multiplyLeft(initialRotationMatCopy)
         
+        //Translation
+        var translMat = Matrix4()
+        translMat.translate(positionX, y: positionY, z: positionZ)
         matrix.multiplyLeft(translMat)
         
-//        matrix.multiplyLeft(initialScaleMat)
-//        initialMatCopy.multiplyLeft(matrix)
+        
+        
         return matrix
     }
     

@@ -38,6 +38,7 @@
 		43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A481211966A07D0079B3AF /* FlapyScene.swift */; };
 		43AD54BD195DAFB600C43C20 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BC195DAFB600C43C20 /* Square.swift */; };
 		43AD54BF195DB1E300C43C20 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD54BE195DB1E300C43C20 /* Cube.swift */; };
+		43F8EF9A196D3C20001E7E67 /* ResizingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F8EF99196D3C20001E7E67 /* ResizingNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		43A481211966A07D0079B3AF /* FlapyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlapyScene.swift; sourceTree = "<group>"; };
 		43AD54BC195DAFB600C43C20 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		43AD54BE195DB1E300C43C20 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		43F8EF99196D3C20001E7E67 /* ResizingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				437D5DA4195D649E003CCCF4 /* Matrix4.h */,
 				437D5DA5195D649E003CCCF4 /* Matrix4.m */,
 				435244E4195AC66800D62D63 /* Node.swift */,
+				43F8EF99196D3C20001E7E67 /* ResizingNode.swift */,
 				4372B1D31967148000567EEC /* Scene.swift */,
 				43A481211966A07D0079B3AF /* FlapyScene.swift */,
 				43AD54BE195DB1E300C43C20 /* Cube.swift */,
@@ -365,6 +368,7 @@
 				438800191965558F00043B15 /* MetalView.swift in Sources */,
 				43441901195C478400D73ACE /* UniformsBufferGenerator.m in Sources */,
 				437D5DA6195D649E003CCCF4 /* Matrix4.m in Sources */,
+				43F8EF9A196D3C20001E7E67 /* ResizingNode.swift in Sources */,
 				438C244A1966009A003DA3DB /* Ram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

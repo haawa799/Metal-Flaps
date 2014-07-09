@@ -25,26 +25,28 @@ class FlapyScene: Scene {
     
     init(baseEffect: BaseEffect, view: UIView)
     {
+        
+        var sceneWidth = Float(view.bounds.size.width)
+        var sceneHeight = Float(view.bounds.size.height)
+        
         ram = Ram(baseEffect: baseEffect)
-        ram.setScale(25)
-        ram.positionZ = 100
+        ram.initialWidth = sceneWidth * 0.15
+        ram.initialHeight = sceneWidth * 0.15
+        ram.initialDepth = sceneWidth * 0.15
+        
+        
         
         pipe = Pipe(baseEffect: baseEffect)
-        pipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(90.0), y: 0.0, z: 0.0)
-//        pipe.initialWidth = 180
-//        pipe.initialHeight = 500
-//        pipe.initialDepth = 180
-        pipe.setScale(25)
-        pipe.positionY = 300
-        pipe.positionZ = 100
-        
-        var sceneWidth = Float(view.bounds.size.width) * Float(view.contentScaleFactor)
-        var sceneHeight = Float(view.bounds.size.height) * Float(view.contentScaleFactor)
+        pipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(-90.0), y: 0.0, z: 0.0)
+
+        pipe.initialWidth = sceneWidth * 0.2
+        pipe.initialHeight = sceneHeight * 0.2
+        pipe.initialDepth = sceneWidth * 0.2
         
         backgroundSquare = RatioSquare(baseEffect: baseEffect, textureName: "bg.jpg", width: sceneWidth, height: sceneHeight)
         
         super.init(name: "FlapyScene", baseEffect: baseEffect, width: sceneWidth, height: sceneHeight)
-//        backgroundSquare.positionZ = -180
+
         
         
         addChild(backgroundSquare)
