@@ -33,7 +33,7 @@ import UIKit
     override func updateWithDelta(delta: CFTimeInterval)
     {
         super.updateWithDelta(delta)
-        rotationZ += Float(M_PI/2) * Float(delta)
+//        rotationZ += Float(M_PI/2) * Float(delta)
     }
 
 }

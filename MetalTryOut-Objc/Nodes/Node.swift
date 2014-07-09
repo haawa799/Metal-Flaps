@@ -129,8 +129,6 @@ import QuartzCore
         
         for child in node.children
         {
-            println("count: \(node.children.count)")
-            println("\(child.name)")
             var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
             nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
             child.renderNode(child, parentMatrix: nodeModelMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformProvider)
@@ -144,7 +142,6 @@ import QuartzCore
             commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
             commandEncoder.setVertexBuffer(uniform, offset: 0, atIndex: 1)
             commandEncoder.setFragmentTexture(node.texture, atIndex: 0)
-            println("vertex count \(node.vertexCount)")
             commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, vertexStart: 0, vertexCount: node.vertexCount)
         }
         
@@ -257,6 +254,25 @@ import QuartzCore
         }
         
         return device.newSamplerStateWithDescriptor(pSamplerDescriptor)
+    }
+    
+    func rect2DInParentsCoords() -> CGRect
+    {
+        var width = scaleX
+        if let initialWidth = initialWidth
+        {
+            width *= initialWidth
+        }
+        var height = scaleY
+        if let initialHeight = initialHeight
+        {
+            height *= initialHeight
+        }
+        var x = -width*0.5 + positionX
+        var y = -height*0.5 + positionY
+        
+        var rect = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(width), height: CGFloat(height))
+        return rect
     }
     
     func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
