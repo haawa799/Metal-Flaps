@@ -12,9 +12,6 @@
 
 static const long kMaxBufferBytesPerFrame   = 1024*1024;
 static const int  kFloatsPerMatrix4         = 16;
-
-static const int kLightColorComponents      = 4;
-static const int kLightDirectionComponents  = 3;
 static const int kLightIntensityComponents  = 4;
 
 @interface UniformsBufferGenerator()

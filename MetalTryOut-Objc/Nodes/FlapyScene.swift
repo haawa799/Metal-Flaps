@@ -9,7 +9,20 @@
 import UIKit
 import AVFoundation
 
+protocol FlapyDelegate
+{
+    func scoreIncrement()
+    func resetScore()
+}
+
 class FlapyScene: Scene {
+    
+    var godMod = false
+    var rotates = false
+    var followRam = false
+    var wallpapersFollows = false
+    
+    var delegate: FlapyDelegate?
     
     let gravity:CGFloat = 500.0
     let impuls:CGFloat = 180.0
@@ -22,16 +35,22 @@ class FlapyScene: Scene {
     
     var pipeWalls : [PipeWall]
     let numberOfPipes = 4
-    let startDelta:Float = 100.0
+    let startDelta:Float = 0.0
     
     var playerVelocity = CGPoint(x: 0.0, y: 0.0)
     var verticalVelocity = 0.0
     var gap:Float = 0.0
     var startOffset: Float = 0.0
     
-    var lastPipeStartPos: Float = 0.0
+    var pipeWidth:Float = 0.0
     
-    let pipesVelocity:Float = 170.0
+    let pipesVelocity:Float = 130.0
+    
+    var timePerPipeChange:Float = 0.0
+    var timeSinceLastPipe:Float = 0.0
+    
+    //States
+    var isPaused = true
     
     init(baseEffect: BaseEffect, view: UIView)
     {
@@ -39,7 +58,7 @@ class FlapyScene: Scene {
         sceneWidth = Float(view.bounds.size.width)
         sceneHeight = Float(view.bounds.size.height)
         
-        var pipeWidth:Float = sceneWidth * 0.2
+        pipeWidth = sceneWidth * 0.2
         
         gap = (sceneWidth - 2*pipeWidth) * 0.5
         startOffset = sceneWidth + startDelta
@@ -47,6 +66,8 @@ class FlapyScene: Scene {
         ram = Ram(baseEffect: baseEffect)
         pipeWalls = Array<PipeWall>()
         backgroundSquare = RatioSquare(baseEffect: baseEffect, textureName: "bg.jpg", width: sceneWidth, height: sceneHeight)
+        
+        timePerPipeChange = (gap + pipeWidth) / pipesVelocity
         
         super.init(name: "FlapyScene", baseEffect: baseEffect, width: sceneWidth, height: sceneHeight)
 
@@ -59,7 +80,6 @@ class FlapyScene: Scene {
             pipeWalls.append(pipe)
             addChild(pipe)
         }
-        lastPipeStartPos = pipeWalls[numberOfPipes-1].positionX - startDelta
         
         ram.initialWidth = sceneWidth * 0.15
         ram.initialHeight = sceneWidth * 0.15
@@ -70,36 +90,49 @@ class FlapyScene: Scene {
         addChild(backgroundSquare)
         addChild(ram)
         
-//        self.positionZ -= height * 0.4
-//        self.rotationY += Matrix4.degreesToRad(15.0)
-        
         self.prepareToDraw()
 
     }
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
-//        rotationY += Float(M_PI/8) * Float(delta)
-        
-        updatePlayer(delta)
-        updatePipes(delta)
-        for child in children
+        if rotates
         {
-            child.updateWithDelta(delta)
+            rotationY += Float(M_PI/8) * Float(delta)
         }
         
-//        collisionCheck()
+        if isPaused == false
+        {
+            timeSinceLastPipe += Float(delta)
+            if timeSinceLastPipe >= timePerPipeChange
+            {
+                timeSinceLastPipe = 0
+                delegate?.scoreIncrement()
+            }
+            
+            updatePlayer(delta)
+            updatePipes(delta)
+            for child in children
+            {
+                child.updateWithDelta(delta)
+            }
+            
+            if godMod == false
+            {
+                collisionCheck()
+            }
+        }
     }
     
     func collisionCheck()
     {
-        var ramRect = ram.rect2DInParentsCoords()
         for pipe in pipeWalls
         {
-//            if pipe.anyPipeIntersectsWithRect(ramRect)
-//            {
-//                println("collision")
-//            }
+            if pipe.anyPipeIntersectsWithRect(ram)
+            {
+                gameOver()
+                break;
+            }
         }
     }
     
@@ -147,39 +180,47 @@ class FlapyScene: Scene {
             ram.positionY = 0.0+height*0.38
         }
         
+        if followRam
+        {
+            self.positionY = -ram.positionY
+        }
+        
+        if wallpapersFollows
+        {
+            self.backgroundSquare.positionY = ram.positionY
+        }
     }
     
     func flap()
     {
+        if isPaused == true
+        {
+            isPaused = false
+        }
         playerVelocity = CGPoint(x: 0.0, y: impuls)
 //        playPop()
     }
     
     func gameOver()
     {
+        isPaused = true
+        delegate?.resetScore()
         
+        resetPipes()
     }
     
-    func restart()
+    func resetPipes()
     {
-        
+        for var i = 0; i<numberOfPipes; i++
+        {
+            var pipe = pipeWalls[i]
+            pipe.positionX = startOffset + (gap + pipeWidth)*Float(i)
+            pipe.positionZ = sceneWidth * 0.2
+        }
     }
     
     func playSoundWithName(name: String)
     {
-        //        NSString *path;
-        //
-        //        NSURL *url;
-        //
-        //        //where you are about to add sound
-        //
-        //        path =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"quotes_%d",soundTags] ofType:@"mp3"];
-        //
-        //        url = [NSURL fileURLWithPath:path];
-        //        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
-        //        [player setVolume:1.0];
-        //        [player play];
-        
         var path = NSBundle.mainBundle().pathForResource(name, ofType: nil)
         var url = NSURL(fileURLWithPath: path)
         var player = AVAudioPlayer(contentsOfURL: url, error: nil)

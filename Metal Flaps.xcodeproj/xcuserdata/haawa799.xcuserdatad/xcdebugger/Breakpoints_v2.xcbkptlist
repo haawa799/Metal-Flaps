@@ -178,11 +178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MetalTryOut-Objc/Shaders/UniformsBufferGenerator.m"
-            timestampString = "426423548.160901"
+            timestampString = "426676441.291232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "-initWithNumberOfInflightBuffers:withDevice:"
             landmarkType = "5">
          </BreakpointContent>

@@ -70,16 +70,46 @@ class PipeWall: Node {
         upperPipe.positionY = midPoint + heightBetween * 0.5
     }
     
-    func anyPipeIntersectsWithRect(rect:CGRect) -> Bool
+    func anyPipeIntersectsWithRect(ram:Node) -> Bool
     {
+        var l:Float = height
+        var k:Float = height*0.5 + midPoint
+        var q:Float = heightBetween*0.5
         
-        var rectUp = upperPipe.rect2DInParentsCoords()
-        rectUp = CGRect(x: CGFloat(rectUp.origin.x + CGFloat(positionX)), y: CGFloat(rectUp.origin.y + CGFloat(positionY)), width: rectUp.size.width , height: rectUp.size.width)
+        var botHeight:Float = k - q
+        var upHeight:Float = l - k - q
         
-        var rectBot = botPipe.rect2DInParentsCoords()
-        rectBot = CGRect(x: CGFloat(rectBot.origin.x + CGFloat(positionX)), y: CGFloat(rectBot.origin.y + CGFloat(positionY)), width: rectBot.size.width , height: rectBot.size.width)
         
-        var intersects = rect.intersects(rectUp) | rect.intersects(rectBot)
+        var ramR = nodeRect(ram)
+        
+        var rectWall = CGRect(x: CGFloat(positionX-width*0.5), y: CGFloat(0-height*0.5), width: CGFloat(width), height: CGFloat(height))
+        
+        
+        var rUp = CGRect(x: rectWall.origin.x, y: rectWall.origin.y + CGFloat(botHeight) + CGFloat(heightBetween), width: rectWall.size.width, height: CGFloat(upHeight))
+        
+        var rDown = CGRect(x: rectWall.origin.x, y: rectWall.origin.y, width: rectWall.size.width, height: CGFloat(botHeight))
+        
+        
+        var intersects = ramR.intersects(rDown) | ramR.intersects(rUp)
         return intersects
+    }
+    
+    func nodeRect(node: Node) -> CGRect
+    {
+        var nodeWidth = node.scaleX
+        if let nodeInitialWidth = node.initialWidth
+        {
+            nodeWidth *= nodeInitialWidth
+        }
+        var nodeHeight = node.scaleY
+        if let nodeInitialHeight = node.initialHeight
+        {
+            nodeHeight *= nodeInitialHeight
+        }
+        var x = -nodeWidth*0.5 + node.positionX
+        var y =  node.positionY
+        
+        var rect = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(nodeWidth), height: CGFloat(nodeHeight))
+        return rect
     }
 }

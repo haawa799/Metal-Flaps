@@ -8,9 +8,31 @@
 
 import UIKit
 
-class FlapySceneViewController: MetalViewController {
+class FlapySceneViewController: MetalViewController,FlapyDelegate {
 
-
+    @IBOutlet var scoreLabel: UILabel
+    @IBOutlet var optionsView: UIView
+    var score = 0
+    var optionsVisible = false
+    var flapyScene: FlapyScene?
+    
+    @IBAction func optionsVisibilityChange(sender: AnyObject) {
+        optionsVisible = !optionsVisible
+        optionsView.hidden = optionsVisible
+    }
+    
+    @IBAction func godMode(sender: UISwitch) {
+        flapyScene!.godMod = sender.on
+    }
+    @IBAction func rotation(sender: UISwitch) {
+        flapyScene!.rotates = sender.on
+    }
+    @IBAction func followRam(sender: UISwitch) {
+        flapyScene!.followRam = sender.on
+    }
+    @IBAction func wallpapersFollow(sender: UISwitch) {
+        flapyScene!.wallpapersFollows = sender.on
+    }
     // UIViewController
     
     override func viewDidLoad()
@@ -26,18 +48,31 @@ class FlapySceneViewController: MetalViewController {
         
         //
         
-        var fscene = FlapyScene(baseEffect: fbaseEffect, view: self.view)
-        setupMetal(fbaseEffect, scene: fscene)
+        flapyScene = FlapyScene(baseEffect: fbaseEffect, view: self.view)
+        flapyScene!.delegate = self
+        setupMetal(fbaseEffect, scene: flapyScene!)
     }
     
     // MySceneViewController
-    
     func flap()
     {
         if let tScene = scene as? FlapyScene
         {
             tScene.flap()
         }
+    }
+    
+    // FlapyDelegate
+    func scoreIncrement()
+    {
+        score++
+        scoreLabel.text = "\(score)"
+    }
+    
+    func resetScore()
+    {
+        score = 0
+        scoreLabel.text = "\(score)"
     }
     
 }
