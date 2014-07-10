@@ -55,10 +55,7 @@ static const int kLightIntensityComponents  = 4;
                               withBaseEffect:(BaseEffect *)baseEffect
                                    withModel:(Node *)node
 {
-    
-    float color[4] = {baseEffect.lightColor.red,baseEffect.lightColor.green,baseEffect.lightColor.blue,baseEffect.lightColor.alpha};
-    
-    float uniformFloatsBuffer[kFloatsPerMatrix4 * 2 + kLightColorComponents + kLightDirectionComponents + kLightIntensityComponents];
+    float uniformFloatsBuffer[kFloatsPerMatrix4 * 2 + kLightIntensityComponents];
     
     int counter = 0;
     for (int k = 0; k < 2; k++)
@@ -75,14 +72,8 @@ static const int kLightIntensityComponents  = 4;
             }
         }
     }
-    for (int i = 0; i < kLightColorComponents; i++)
-    {
-        uniformFloatsBuffer[counter++] = color[i];
-    }
-    for (int i = 0; i < kLightDirectionComponents; i++)
-    {
-        uniformFloatsBuffer[counter++] = [baseEffect.lightDirection[i] floatValue];
-    }
+
+    
     uniformFloatsBuffer[counter++] = node.ambientIntensity;
     uniformFloatsBuffer[counter++] = node.diffuseIntensity;
     uniformFloatsBuffer[counter++] = node.specularIntensity;

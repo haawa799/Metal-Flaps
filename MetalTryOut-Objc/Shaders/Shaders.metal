@@ -10,8 +10,6 @@
 using namespace metal;
 
 struct Light{
-    float4        color;
-    packed_float3 direction;
     float         ambientIntensity;
     float         diffuseIntensity;
     float         specularIntensity;
@@ -106,8 +104,8 @@ vertex VertexOut myVertexShader(const device Vertex*    vertexArray   [[buffer(0
     out.normal = {normal[0],normal[1],normal[2]};
     out.fragmentPosition = {fragmentPos4[0],fragmentPos4[1],fragmentPos4[2]};
     
-    out.lightDirection = uniforms.light.direction;
-    out.lightColor = uniforms.light.color;
+    out.lightDirection = {0.0,0.0,-1.0};
+    out.lightColor = {1.0,1.0,1.0,1.0};
     out.diffuseIntensity = uniforms.light.diffuseIntensity;
     out.ambientIntensity = uniforms.light.ambientIntensity;
     out.specularIntensity = uniforms.light.specularIntensity;
