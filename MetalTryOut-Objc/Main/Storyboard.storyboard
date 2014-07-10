@@ -25,25 +25,25 @@
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ptl-Xr-VDD">
                                 <rect key="frame" x="20" y="20" width="206" height="284"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEW-cC-WKJ">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JEW-cC-WKJ">
                                         <rect key="frame" x="0.0" y="20" width="51" height="31"/>
                                         <connections>
                                             <action selector="godMode:" destination="yRV-ez-iVL" eventType="valueChanged" id="KAO-XA-1ih"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyN-7l-z1C">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YyN-7l-z1C">
                                         <rect key="frame" x="0.0" y="59" width="51" height="31"/>
                                         <connections>
                                             <action selector="rotation:" destination="yRV-ez-iVL" eventType="valueChanged" id="miP-vk-Alt"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7B-Jo-agI">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g7B-Jo-agI">
                                         <rect key="frame" x="0.0" y="98" width="51" height="31"/>
                                         <connections>
                                             <action selector="followRam:" destination="yRV-ez-iVL" eventType="valueChanged" id="JeY-Om-4ua"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99A-xS-mRo">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="99A-xS-mRo">
                                         <rect key="frame" x="0.0" y="137" width="51" height="31"/>
                                         <connections>
                                             <action selector="wallpapersFollow:" destination="yRV-ez-iVL" eventType="valueChanged" id="kdA-ig-sf3"/>
