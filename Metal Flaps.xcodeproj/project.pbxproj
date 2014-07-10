@@ -27,6 +27,7 @@
 		435244E6195AC66800D62D63 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435244E4195AC66800D62D63 /* Node.swift */; };
 		4372B1D41967148000567EEC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372B1D31967148000567EEC /* Scene.swift */; };
 		437D5DA6195D649E003CCCF4 /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D5DA5195D649E003CCCF4 /* Matrix4.m */; };
+		437F7682196DDD7900D72D12 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 437F7681196DDD7900D72D12 /* pop.wav */; };
 		438345AA1960739C00D98C92 /* METLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 438345A91960739C00D98C92 /* METLTexture.m */; };
 		4383CE14196BFAEE008B21D4 /* ram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4383CE13196BFAEE008B21D4 /* ram.txt */; };
 		4383CE16196BFD84008B21D4 /* pipe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4383CE15196BFD84008B21D4 /* pipe.txt */; };
@@ -81,6 +82,7 @@
 		4372B1D31967148000567EEC /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		437D5DA4195D649E003CCCF4 /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4.h; sourceTree = "<group>"; };
 		437D5DA5195D649E003CCCF4 /* Matrix4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix4.m; sourceTree = "<group>"; };
+		437F7681196DDD7900D72D12 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
 		438345A81960739C00D98C92 /* METLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METLTexture.h; sourceTree = "<group>"; };
 		438345A91960739C00D98C92 /* METLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METLTexture.m; sourceTree = "<group>"; };
 		4383CE13196BFAEE008B21D4 /* ram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ram.txt; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		43479281195AC82A00FA2962 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				437F7681196DDD7900D72D12 /* pop.wav */,
 				434BE7A3196945290005C022 /* bg.jpg */,
 				433662DF19658DA700D516B7 /* smiley.png */,
 				431E367B19605D6400E1A800 /* bricks.jpeg */,
@@ -339,6 +342,7 @@
 				433662E019658DA700D516B7 /* smiley.png in Resources */,
 				434BE7A4196945290005C022 /* bg.jpg in Resources */,
 				435244E1195AC56B00D62D63 /* Shaders.metal in Resources */,
+				437F7682196DDD7900D72D12 /* pop.wav in Resources */,
 				4383CE14196BFAEE008B21D4 /* ram.txt in Resources */,
 				435244D9195AC04000D62D63 /* Storyboard.storyboard in Resources */,
 				43479288195AC83E00FA2962 /* screenshot.png in Resources */,

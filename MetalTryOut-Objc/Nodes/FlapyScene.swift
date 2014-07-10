@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class FlapyScene: Scene {
     
@@ -30,7 +31,7 @@ class FlapyScene: Scene {
     
     var lastPipeStartPos: Float = 0.0
     
-    let pipesVelocity:Float = 40.0
+    let pipesVelocity:Float = 170.0
     
     init(baseEffect: BaseEffect, view: UIView)
     {
@@ -86,6 +87,20 @@ class FlapyScene: Scene {
         {
             child.updateWithDelta(delta)
         }
+        
+//        collisionCheck()
+    }
+    
+    func collisionCheck()
+    {
+        var ramRect = ram.rect2DInParentsCoords()
+        for pipe in pipeWalls
+        {
+//            if pipe.anyPipeIntersectsWithRect(ramRect)
+//            {
+//                println("collision")
+//            }
+        }
     }
     
     func updatePipes(delta: CFTimeInterval)
@@ -108,6 +123,8 @@ class FlapyScene: Scene {
                 pipe.changeMidPointToRandomPoint(pipeWalls[tag])
             }
         }
+        
+        
     }
     
     
@@ -129,11 +146,45 @@ class FlapyScene: Scene {
         if (ram.positionY >= 0.0+height*0.38) {
             ram.positionY = 0.0+height*0.38
         }
+        
     }
     
     func flap()
     {
         playerVelocity = CGPoint(x: 0.0, y: impuls)
+//        playPop()
+    }
+    
+    func gameOver()
+    {
+        
+    }
+    
+    func restart()
+    {
+        
+    }
+    
+    func playSoundWithName(name: String)
+    {
+        //        NSString *path;
+        //
+        //        NSURL *url;
+        //
+        //        //where you are about to add sound
+        //
+        //        path =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"quotes_%d",soundTags] ofType:@"mp3"];
+        //
+        //        url = [NSURL fileURLWithPath:path];
+        //        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+        //        [player setVolume:1.0];
+        //        [player play];
+        
+        var path = NSBundle.mainBundle().pathForResource(name, ofType: nil)
+        var url = NSURL(fileURLWithPath: path)
+        var player = AVAudioPlayer(contentsOfURL: url, error: nil)
+        player.volume = 1.0
+        player.play()
     }
     
 }

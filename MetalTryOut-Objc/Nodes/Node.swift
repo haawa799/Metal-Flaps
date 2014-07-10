@@ -256,6 +256,25 @@ import QuartzCore
         return device.newSamplerStateWithDescriptor(pSamplerDescriptor)
     }
     
+    func rect2DInParentsCoords() -> CGRect
+    {
+        var width = scaleX
+        if let initialWidth = initialWidth
+        {
+            width *= initialWidth
+        }
+        var height = scaleY
+        if let initialHeight = initialHeight
+        {
+            height *= initialHeight
+        }
+        var x = -width*0.5 + positionX
+        var y = -height*0.5 + positionY
+        
+        var rect = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(width), height: CGFloat(height))
+        return rect
+    }
+    
     func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
     {
         var mv:Matrix4 = mvMatrix as Matrix4

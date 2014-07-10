@@ -39,7 +39,8 @@ class Scene: Node {
     
     func prepareToDraw()
     {
-        var numberOfUniformBuffersToUse = 3*self.numberOfSiblings
+        var numberOfUniformBuffersToUse = 300//3*self.numberOfSiblings
+        println("bufs \(numberOfUniformBuffersToUse)")
         avaliableUniformBuffers = dispatch_semaphore_create(numberOfUniformBuffersToUse)
         self.uniformBufferProvider = UniformsBufferGenerator(numberOfInflightBuffers: CInt(numberOfUniformBuffersToUse), withDevice: baseEffect.device)
         

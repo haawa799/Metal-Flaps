@@ -69,4 +69,17 @@ class PipeWall: Node {
         botPipe.positionY = midPoint - heightBetween * 0.5
         upperPipe.positionY = midPoint + heightBetween * 0.5
     }
+    
+    func anyPipeIntersectsWithRect(rect:CGRect) -> Bool
+    {
+        
+        var rectUp = upperPipe.rect2DInParentsCoords()
+        rectUp = CGRect(x: CGFloat(rectUp.origin.x + CGFloat(positionX)), y: CGFloat(rectUp.origin.y + CGFloat(positionY)), width: rectUp.size.width , height: rectUp.size.width)
+        
+        var rectBot = botPipe.rect2DInParentsCoords()
+        rectBot = CGRect(x: CGFloat(rectBot.origin.x + CGFloat(positionX)), y: CGFloat(rectBot.origin.y + CGFloat(positionY)), width: rectBot.size.width , height: rectBot.size.width)
+        
+        var intersects = rect.intersects(rectUp) | rect.intersects(rectBot)
+        return intersects
+    }
 }
