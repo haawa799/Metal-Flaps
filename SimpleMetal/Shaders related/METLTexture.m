@@ -129,7 +129,7 @@
     
     const void *pPixels = CGBitmapContextGetData(pContext);
     
-    [self.texture replaceRegion:MTLTextureRegionMake2D(0, 0, width, height)
+    [self.texture replaceRegion:MTLRegionMake2D(0, 0, width, height)
                     mipmapLevel:0
                       withBytes:pPixels
                     bytesPerRow:rowBytes];

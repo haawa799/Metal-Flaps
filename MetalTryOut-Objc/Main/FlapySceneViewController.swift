@@ -10,15 +10,15 @@ import UIKit
 
 class FlapySceneViewController: MetalViewController,FlapyDelegate {
 
-    @IBOutlet var scoreLabel: UILabel
-    @IBOutlet var optionsView: UIView
+    @IBOutlet var scoreLabel: UILabel?
+    @IBOutlet var optionsView: UIView?
     var score = 0
     var optionsVisible = false
     var flapyScene: FlapyScene?
     
     @IBAction func optionsVisibilityChange(sender: AnyObject) {
         optionsVisible = !optionsVisible
-        optionsView.hidden = optionsVisible
+        optionsView!.hidden = optionsVisible
     }
     
     @IBAction func godMode(sender: UISwitch) {
@@ -66,13 +66,13 @@ class FlapySceneViewController: MetalViewController,FlapyDelegate {
     func scoreIncrement()
     {
         score++
-        scoreLabel.text = "\(score)"
+        scoreLabel!.text = "\(score)"
     }
     
     func resetScore()
     {
         score = 0
-        scoreLabel.text = "\(score)"
+        scoreLabel!.text = "\(score)"
     }
     
 }

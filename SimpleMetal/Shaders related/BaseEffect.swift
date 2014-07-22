@@ -29,10 +29,8 @@ import Metal
         pipeLineDescriptor.vertexFunction = library.newFunctionWithName(vertexShaderName)
         pipeLineDescriptor.fragmentFunction = library.newFunctionWithName(fragmentShaderName)
         pipeLineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.BGRA8Unorm
-        pipeLineDescriptor.depthWriteEnabled = true
         pipeLineDescriptor.sampleCount = 4
         pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.Depth32Float
-        pipeLineDescriptor.visibilityResultEnabled = true
         
         pipeLineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
         pipeLineDescriptor.depthAttachmentPixelFormat = .BGRA8Unorm
