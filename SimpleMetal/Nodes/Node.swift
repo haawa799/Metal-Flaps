@@ -111,7 +111,7 @@ import QuartzCore
     {
         var commandEncoder:MTLRenderCommandEncoder
         
-        if !encoder
+        if encoder == nil
         {
             commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)
             commandEncoder.setDepthStencilState(depthState)

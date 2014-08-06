@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5E557D31-78C8-42DD-A491-1B45D4C82794</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Metal Flaps</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6A87D7D8D7B39EC28B6F283EB3F9B2EF4BA7D8CA</key>
+		<string>https://github.com/haawa799/Metal-Flaps.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Metal Flaps.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6A87D7D8D7B39EC28B6F283EB3F9B2EF4BA7D8CA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/haawa799/Metal-Flaps.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6A87D7D8D7B39EC28B6F283EB3F9B2EF4BA7D8CA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6A87D7D8D7B39EC28B6F283EB3F9B2EF4BA7D8CA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Metal%20Flaps</string>
+		</dict>
+	</array>
+</dict>
+</plist>

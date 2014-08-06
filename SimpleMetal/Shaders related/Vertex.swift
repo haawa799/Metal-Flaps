@@ -35,16 +35,16 @@ import UIKit
         
         var counter = 0
         
-        self.x = list[counter++].bridgeToObjectiveC().floatValue
-        self.y = list[counter++].bridgeToObjectiveC().floatValue
-        self.z = list[counter++].bridgeToObjectiveC().floatValue
+        self.x = ((list[counter++] as String) as NSString).floatValue
+        self.y = ((list[counter++] as String) as NSString).floatValue
+        self.z = ((list[counter++] as String) as NSString).floatValue
         
-        self.u = list[counter++].bridgeToObjectiveC().floatValue
-        self.v = list[counter++].bridgeToObjectiveC().floatValue
+        self.u = ((list[counter++] as String) as NSString).floatValue
+        self.v = ((list[counter++] as String) as NSString).floatValue
         
-        self.nX = list[counter++].bridgeToObjectiveC().floatValue
-        self.nY = list[counter++].bridgeToObjectiveC().floatValue
-        self.nZ = list[counter++].bridgeToObjectiveC().floatValue
+        self.nX = ((list[counter++] as String) as NSString).floatValue
+        self.nY = ((list[counter++] as String) as NSString).floatValue
+        self.nZ = ((list[counter++] as String) as NSString).floatValue
         
         super.init()
     }

@@ -29,12 +29,12 @@ import Metal
         }
     }
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         // Initialization code
         setup()
     }
-    init(coder aDecoder: NSCoder!){
+    required init(coder aDecoder: NSCoder!){
         super.init(coder: aDecoder)
         setup()
     }
@@ -83,7 +83,7 @@ import Metal
         fpsLabel = UILabel(frame: CGRectZero)
         fpsLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         fpsLabel!.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
-        self.addSubview(fpsLabel)
+        self.addSubview(fpsLabel!)
 
         
         self.opaque          = true
