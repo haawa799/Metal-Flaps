@@ -25,7 +25,7 @@ import Metal
         
         // Setup MTLRenderPipline descriptor object with vertex and fragment shader
         pipeLineDescriptor = MTLRenderPipelineDescriptor()
-        var library = device.newDefaultLibrary()
+        var library = device.newDefaultLibrary()!
         pipeLineDescriptor.vertexFunction = library.newFunctionWithName(vertexShaderName)
         pipeLineDescriptor.fragmentFunction = library.newFunctionWithName(fragmentShaderName)
         pipeLineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.BGRA8Unorm
@@ -33,7 +33,6 @@ import Metal
         pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.Depth32Float
         
         pipeLineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
-        pipeLineDescriptor.depthAttachmentPixelFormat = .BGRA8Unorm
         pipeLineDescriptor.stencilAttachmentPixelFormat = .Stencil8
         
         super.init()

@@ -81,7 +81,8 @@ import QuartzCore
         //Setup texture if present
         if let texName = textureName
         {
-            var mTexture:METLTexture = METLTexture(resourceName: texName.pathComponents[0], ext: texName.pathComponents[1])
+          var nameComponents = texName.componentsSeparatedByString(".")
+            var mTexture:METLTexture = METLTexture(resourceName: nameComponents[0], ext: nameComponents[1])
             mTexture.finalize(baseEffect.device)
             self.texture = mTexture.texture
         }
@@ -113,10 +114,10 @@ import QuartzCore
         
         if encoder == nil
         {
-            commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)
-            commandEncoder.setDepthStencilState(depthState)
-            commandEncoder.setRenderPipelineState(baseEffect.renderPipelineState)
-            commandEncoder.setFragmentSamplerState(samplerState, atIndex: 0)
+            commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)!
+            commandEncoder.setDepthStencilState(depthState!)
+            commandEncoder.setRenderPipelineState(baseEffect.renderPipelineState!)
+            commandEncoder.setFragmentSamplerState(samplerState!, atIndex: 0)
             commandEncoder.setCullMode(MTLCullMode.Front)
         }
         else
@@ -253,7 +254,7 @@ import QuartzCore
             println(">> ERROR: Failed creating a sampler descriptor!")
         }
         
-        return device.newSamplerStateWithDescriptor(pSamplerDescriptor)
+        return device.newSamplerStateWithDescriptor(pSamplerDescriptor!)
     }
     
     func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?

@@ -222,7 +222,7 @@ class FlapyScene: Scene {
     func playSoundWithName(name: String)
     {
         var path = NSBundle.mainBundle().pathForResource(name, ofType: nil)
-        var url = NSURL(fileURLWithPath: path)
+        var url = NSURL(fileURLWithPath: path!)
         var player = AVAudioPlayer(contentsOfURL: url, error: nil)
         player.volume = 1.0
         player.play()

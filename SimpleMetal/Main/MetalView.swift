@@ -34,7 +34,7 @@ import Metal
         // Initialization code
         setup()
     }
-    required init(coder aDecoder: NSCoder!){
+    required init(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
         setup()
     }
@@ -66,10 +66,10 @@ import Metal
         return CAMetalLayer.self
     }
     override func layoutSubviews(){
-        var rightConstraint = NSLayoutConstraint(item: fpsLabel, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1.0, constant: 0.0)
-        var botConstraint = NSLayoutConstraint(item: fpsLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        var heightConstraint = NSLayoutConstraint(item: fpsLabel, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 25.0)
-        var widthConstraint = NSLayoutConstraint(item: fpsLabel, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 60.0)
+        var rightConstraint = NSLayoutConstraint(item: fpsLabel!, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1.0, constant: 0.0)
+        var botConstraint = NSLayoutConstraint(item: fpsLabel!, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        var heightConstraint = NSLayoutConstraint(item: fpsLabel!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 25.0)
+        var widthConstraint = NSLayoutConstraint(item: fpsLabel!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 60.0)
         
         self.addConstraints([rightConstraint,botConstraint,widthConstraint,heightConstraint])
         

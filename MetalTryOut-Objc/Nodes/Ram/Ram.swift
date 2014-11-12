@@ -7,7 +7,7 @@ import UIKit
 
         var verticesArray:Array<Vertex> = []
         let path = NSBundle.mainBundle().pathForResource("ram", ofType: "txt")
-            var possibleContent = String.stringWithContentsOfFile(path, encoding: NSUTF8StringEncoding, error: nil)
+            var possibleContent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)
 
             if let content = possibleContent {
             var array = content.componentsSeparatedByString("\n")

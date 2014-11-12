@@ -23,7 +23,7 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     var fpsLabel: UILabel!
     
     //UIViewController
-    required init(coder aDecoder: NSCoder!)
+    required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
     }
@@ -40,7 +40,7 @@ class MetalViewController: UIViewController,MetalViewProtocol {
         metalView.metalViewDelegate = self
         
         commandQ = device.newCommandQueue()
-        _displayLink = CADisplayLink(target: self, selector: Selector.convertFromStringLiteral("_newFrame:"))
+        _displayLink = CADisplayLink(target: self, selector: Selector("_newFrame:"))
         _displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
@@ -104,6 +104,9 @@ class MetalViewController: UIViewController,MetalViewProtocol {
         }
         
         var elapsed:CFTimeInterval = displayLink.timestamp - _lastFrameTimestamp
+        if elapsed == 0{
+          elapsed = 0.1
+        }
         metalView.fpsLabel!.text = "fps: \(Int(1.0/elapsed))"
         _lastFrameTimestamp = displayLink.timestamp
         metalView.display()
