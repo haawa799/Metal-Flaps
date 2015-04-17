@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4304BFE8195455A800326016 /* MetalTryOut_ObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4304BFE7195455A800326016 /* MetalTryOut_ObjcTests.m */; };
 		4333BA40196EE6450008BC48 /* FrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA30196EE6450008BC48 /* FrameBuffer.m */; };
 		4333BA41196EE6450008BC48 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA31196EE6450008BC48 /* MetalView.swift */; };
 		4333BA42196EE6450008BC48 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA32196EE6450008BC48 /* MetalViewController.swift */; };
@@ -38,19 +37,8 @@
 		43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A481211966A07D0079B3AF /* FlapyScene.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		4304BFE2195455A800326016 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4304BFC3195455A800326016 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4304BFCA195455A800326016;
-			remoteInfo = "MetalTryOut-Objc";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		4304BFCB195455A800326016 /* Metal Flaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Flaps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4304BFE1195455A800326016 /* Metal FlapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Metal FlapsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4304BFE6195455A800326016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4304BFE7195455A800326016 /* MetalTryOut_ObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetalTryOut_ObjcTests.m; sourceTree = "<group>"; };
 		4333BA2F196EE6450008BC48 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
@@ -98,13 +86,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4304BFDE195455A800326016 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -121,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				4304BFCB195455A800326016 /* Metal Flaps.app */,
-				4304BFE1195455A800326016 /* Metal FlapsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -301,24 +281,6 @@
 			productReference = 4304BFCB195455A800326016 /* Metal Flaps.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4304BFE0195455A800326016 /* Metal FlapsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4304BFEE195455A800326016 /* Build configuration list for PBXNativeTarget "Metal FlapsTests" */;
-			buildPhases = (
-				4304BFDD195455A800326016 /* Sources */,
-				4304BFDE195455A800326016 /* Frameworks */,
-				4304BFDF195455A800326016 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4304BFE3195455A800326016 /* PBXTargetDependency */,
-			);
-			name = "Metal FlapsTests";
-			productName = "MetalTryOut-ObjcTests";
-			productReference = 4304BFE1195455A800326016 /* Metal FlapsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -330,10 +292,6 @@
 				TargetAttributes = {
 					4304BFCA195455A800326016 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					4304BFE0195455A800326016 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 4304BFCA195455A800326016;
 					};
 				};
 			};
@@ -351,7 +309,6 @@
 			projectRoot = "";
 			targets = (
 				4304BFCA195455A800326016 /* Metal Flaps */,
-				4304BFE0195455A800326016 /* Metal FlapsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -369,13 +326,6 @@
 				4333BA53196EE6D20008BC48 /* eye.png in Resources */,
 				4333BA52196EE6D20008BC48 /* char_ram_col.jpg in Resources */,
 				435244D9195AC04000D62D63 /* Storyboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4304BFDF195455A800326016 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,23 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4304BFDD195455A800326016 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4304BFE8195455A800326016 /* MetalTryOut_ObjcTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4304BFE3195455A800326016 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4304BFCA195455A800326016 /* Metal Flaps */;
-			targetProxy = 4304BFE2195455A800326016 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4304BFE9195455A800326016 /* Debug */ = {
@@ -536,42 +470,6 @@
 			};
 			name = Release;
 		};
-		4304BFEF195455A800326016 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetalTryOut-Objc.app/MetalTryOut-Objc";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MetalTryOut-ObjcTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "Metal FlapsTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		4304BFF0195455A800326016 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetalTryOut-Objc.app/MetalTryOut-Objc";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MetalTryOut-ObjcTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "Metal FlapsTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -589,15 +487,6 @@
 			buildConfigurations = (
 				4304BFEC195455A800326016 /* Debug */,
 				4304BFED195455A800326016 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4304BFEE195455A800326016 /* Build configuration list for PBXNativeTarget "Metal FlapsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4304BFEF195455A800326016 /* Debug */,
-				4304BFF0195455A800326016 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

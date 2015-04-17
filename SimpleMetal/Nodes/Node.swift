@@ -130,15 +130,15 @@ import QuartzCore
         
         for child in node.children
         {
-            var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
-            nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
+            var nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as! Matrix4)
             child.renderNode(child, parentMatrix: nodeModelMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformProvider)
         }
         
         if node.vertexCount > 0
         {
-            var nodeModelMatrix: Matrix4 = node.modelMatrix() as Matrix4
-            nodeModelMatrix.multiplyLeft(parentMatrix as Matrix4)
+            var nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as! Matrix4)
             var uniform = node.getUniformsBufferFromUniformsProvider(uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
             commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
             commandEncoder.setVertexBuffer(uniform, offset: 0, atIndex: 1)
@@ -208,7 +208,7 @@ import QuartzCore
         matrix.scale(scaleX * width, y: scaleY * height, z: scaleZ * depth)
         
         //Rotate
-        var initialRotationMatCopy: Matrix4 = (initialRotation as Matrix4).copy()
+        var initialRotationMatCopy: Matrix4 = (initialRotation as! Matrix4).copy()
         matrix.rotateAroundX(rotationX, y: rotationY, z: rotationZ)
         matrix.multiplyLeft(initialRotationMatCopy)
         
@@ -259,9 +259,9 @@ import QuartzCore
     
     func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
     {
-        var mv:Matrix4 = mvMatrix as Matrix4
-        var proj:Matrix4 = projMatrix as Matrix4
-        var generator: UniformsBufferGenerator = provider as UniformsBufferGenerator
+        var mv:Matrix4 = mvMatrix as! Matrix4
+        var proj:Matrix4 = projMatrix as! Matrix4
+        var generator: UniformsBufferGenerator = provider as! UniformsBufferGenerator
         uniformsBuffer = generator.bufferWithProjectionMatrix(proj, modelViewMatrix: mv, withBaseEffect: baseEffect, withModel: self)
         return uniformsBuffer
     }

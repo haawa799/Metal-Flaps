@@ -41,7 +41,7 @@ import Metal
     
     func display()
     {
-        var frameBuf = frameBuffer as FrameBuffer
+        var frameBuf = frameBuffer as! FrameBuffer
         
         frameBuf.drawableSize = self.bounds.size
         
@@ -73,7 +73,7 @@ import Metal
         
         self.addConstraints([rightConstraint,botConstraint,widthConstraint,heightConstraint])
         
-        (frameBuffer as FrameBuffer).layerSizeDidUpdate = true
+        (frameBuffer as! FrameBuffer).layerSizeDidUpdate = true
         
         super.layoutSubviews()
     }
@@ -91,7 +91,7 @@ import Metal
         
         // setting this to yes will allow Main thread to display framebuffer when
         // view:setNeedDisplay: is called by main thread
-        _metalLayer = self.layer as CAMetalLayer
+        _metalLayer = self.layer as! CAMetalLayer
         
         self.contentScaleFactor = UIScreen.mainScreen().scale
         

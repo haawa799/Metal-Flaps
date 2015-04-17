@@ -90,7 +90,7 @@ class PipeWall: Node {
         var rDown = CGRect(x: rectWall.origin.x, y: rectWall.origin.y, width: rectWall.size.width, height: CGFloat(botHeight))
         
         
-        var intersects = ramR.intersects(rDown) | ramR.intersects(rUp)
+        var intersects = ramR.intersects(rDown) || ramR.intersects(rUp)
         return intersects
     }
     
