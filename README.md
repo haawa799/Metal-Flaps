@@ -6,9 +6,7 @@ Flappy bird done with Metal and Swift.
 
 Demo here: http://www.youtube.com/watch?v=F_9bwQBv3Zo&feature=youtu.be
 
-![alt tag](http://cl.ly/image/1T1B3S0C1K0W/q0.png)
-![alt tag](http://cl.ly/image/263d2M2l3r3Q/q01.png)
-![alt tag](http://cl.ly/image/30031Y2m1P2N/q1.png)
+![screenshot](screenshot.png)
  
 
 
