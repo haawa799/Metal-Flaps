@@ -71,14 +71,14 @@ class FlapyScene: Scene {
         
         super.init(name: "FlapyScene", baseEffect: baseEffect, width: sceneWidth, height: sceneHeight)
 
-        for var i = 0; i<numberOfPipes; i++
+        for i in 0..<numberOfPipes
         {
-            var pipe = PipeWall(name: "pipeWall\(i)", baseEffect: baseEffect, heightBetween: 2*pipeWidth, height: sceneHeight, width: pipeWidth)
+            let pipe = PipeWall(name: "pipeWall\(i)", baseEffect: baseEffect, heightBetween: 2*pipeWidth, height: sceneHeight, width: pipeWidth)
             pipe.positionX = startOffset + (gap + pipeWidth)*Float(i)
             pipe.positionZ = sceneWidth * 0.2
             pipe.tag = i
             pipeWalls.append(pipe)
-            addChild(pipe)
+            addChild(child: pipe)
         }
         
         ram.initialWidth = sceneWidth * 0.15
@@ -87,8 +87,8 @@ class FlapyScene: Scene {
         ram.positionZ = sceneWidth * 0.2
         ram.positionX = sceneWidth * -0.2
         
-        addChild(backgroundSquare)
-        addChild(ram)
+        addChild(child: backgroundSquare)
+        addChild(child: ram)
         
         self.prepareToDraw()
 
@@ -98,7 +98,7 @@ class FlapyScene: Scene {
     {
         if rotates
         {
-            rotationY += Float(M_PI/8) * Float(delta)
+            rotationY += Float.pi/8 * Float(delta)
         }
         
         if isPaused == false
@@ -110,11 +110,11 @@ class FlapyScene: Scene {
                 delegate?.scoreIncrement()
             }
             
-            updatePlayer(delta)
-            updatePipes(delta)
+            updatePlayer(delta: delta)
+            updatePipes(delta: delta)
             for child in children
             {
-                child.updateWithDelta(delta)
+                child.updateWithDelta(delta: delta)
             }
             
             if godMod == false
@@ -128,7 +128,7 @@ class FlapyScene: Scene {
     {
         for pipe in pipeWalls
         {
-            if pipe.anyPipeIntersectsWithRect(ram)
+            if pipe.anyPipeIntersectsWithRect(ram: ram)
             {
                 gameOver()
                 break;
@@ -138,12 +138,12 @@ class FlapyScene: Scene {
     
     func updatePipes(delta: CFTimeInterval)
     {
-        var deltaX = Float(delta) * pipesVelocity
+        let deltaX = Float(delta) * pipesVelocity
         
         for pipe in pipeWalls
         {
             pipe.positionX -= deltaX
-            var leftMargin:Float = sceneWidth + pipe.width
+            let leftMargin:Float = sceneWidth + pipe.width
             if pipe.positionX <= -leftMargin
             {
                 var tag = pipe.tag - 1
@@ -153,7 +153,7 @@ class FlapyScene: Scene {
                 }
                 
                 pipe.positionX = pipeWalls[tag].positionX + gap + pipe.width
-                pipe.changeMidPointToRandomPoint(pipeWalls[tag])
+                pipe.changeMidPointToRandomPoint(previous: pipeWalls[tag])
             }
         }
         
@@ -164,12 +164,11 @@ class FlapyScene: Scene {
     func updatePlayer(delta: CFTimeInterval)
     {
         // Apply gravity
-        var gravity = CGPoint(x: CGFloat(0.0) * CGFloat(delta), y: CGFloat(-self.gravity) * CGFloat(delta))
-        var gravityStep = CGPoint(x: CGFloat(gravity.x) * CGFloat(delta), y: gravity.y * CGFloat(delta))
+        let gravity = CGPoint(x: CGFloat(0.0) * CGFloat(delta), y: CGFloat(-self.gravity) * CGFloat(delta))
         playerVelocity = CGPoint(x: playerVelocity.x + gravity.x, y: playerVelocity.y + gravity.y)
         
         // Apply velocity
-        var velocityStep = CGPoint(x: playerVelocity.x * CGFloat(delta), y: playerVelocity.y * CGFloat(delta))
+        let velocityStep = CGPoint(x: playerVelocity.x * CGFloat(delta), y: playerVelocity.y * CGFloat(delta))
         ram.positionY = Float(ram.positionY) + Float(velocityStep.y)
         // Temporary halt when hits ground
         if (ram.positionY <= 0.0-height*0.39) {
@@ -211,9 +210,9 @@ class FlapyScene: Scene {
     
     func resetPipes()
     {
-        for var i = 0; i<numberOfPipes; i++
+        for i in 0..<numberOfPipes
         {
-            var pipe = pipeWalls[i]
+            let pipe = pipeWalls[i]
             pipe.positionX = startOffset + (gap + pipeWidth)*Float(i)
             pipe.positionZ = sceneWidth * 0.2
         }
@@ -221,11 +220,16 @@ class FlapyScene: Scene {
     
     func playSoundWithName(name: String)
     {
-        var path = NSBundle.mainBundle().pathForResource(name, ofType: nil)
-        var url = NSURL(fileURLWithPath: path!)
-        var player = AVAudioPlayer(contentsOfURL: url, error: nil)
-        player.volume = 1.0
-        player.play()
+        guard let url = Bundle.main.url(forResource: name, withExtension: nil) else {
+            return
+        }
+        do {
+            let player = try AVAudioPlayer.init(contentsOf: url)//(contentsOfURL: url, fileTypeHint: nil)
+            player.volume = 1.0
+            player.play()
+        } catch {
+            print(error)
+        }
     }
     
 }

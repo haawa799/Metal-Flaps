@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		257480E4275788C3007065BB /* VertexBufferGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA3F196EE6450008BC48 /* VertexBufferGenerator.m */; };
+		257480E627578BEE007065BB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 257480E527578BEE007065BB /* Launch Screen.storyboard */; };
 		4333BA40196EE6450008BC48 /* FrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA30196EE6450008BC48 /* FrameBuffer.m */; };
 		4333BA41196EE6450008BC48 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA31196EE6450008BC48 /* MetalView.swift */; };
 		4333BA42196EE6450008BC48 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA32196EE6450008BC48 /* MetalViewController.swift */; };
@@ -17,7 +19,6 @@
 		4333BA47196EE6450008BC48 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA3A196EE6450008BC48 /* Shaders.metal */; };
 		4333BA48196EE6450008BC48 /* UniformsBufferGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA3C196EE6450008BC48 /* UniformsBufferGenerator.m */; };
 		4333BA49196EE6450008BC48 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA3D196EE6450008BC48 /* Vertex.swift */; };
-		4333BA4A196EE6450008BC48 /* VertexBufferGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4333BA3F196EE6450008BC48 /* VertexBufferGenerator.m */; };
 		4333BA50196EE6D20008BC48 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4333BA4C196EE6D20008BC48 /* bg.jpg */; };
 		4333BA52196EE6D20008BC48 /* char_ram_col.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4333BA4E196EE6D20008BC48 /* char_ram_col.jpg */; };
 		4333BA53196EE6D20008BC48 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 4333BA4F196EE6D20008BC48 /* eye.png */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		257480E2275775E8007065BB /* VertexBufferGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexBufferGenerator.swift; sourceTree = "<group>"; };
+		257480E527578BEE007065BB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4304BFCB195455A800326016 /* Metal Flaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Flaps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4304BFE6195455A800326016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4304BFE7195455A800326016 /* MetalTryOut_ObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetalTryOut_ObjcTests.m; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 				43479281195AC82A00FA2962 /* Supporting files */,
 				435244DA195AC06A00D62D63 /* Nodes */,
 				435244D0195ABFFF00D62D63 /* Main */,
-				435244D1195ABFFF00D62D63 /* Shaders */,
 			);
 			path = "MetalTryOut-Objc";
 			sourceTree = "<group>";
@@ -177,6 +179,7 @@
 				4333BA3B196EE6450008BC48 /* UniformsBufferGenerator.h */,
 				4333BA3C196EE6450008BC48 /* UniformsBufferGenerator.m */,
 				4333BA3D196EE6450008BC48 /* Vertex.swift */,
+				257480E2275775E8007065BB /* VertexBufferGenerator.swift */,
 				4333BA3E196EE6450008BC48 /* VertexBufferGenerator.h */,
 				4333BA3F196EE6450008BC48 /* VertexBufferGenerator.m */,
 			);
@@ -230,15 +233,9 @@
 				435244D2195AC04000D62D63 /* AppDelegate.swift */,
 				438C244C19660B44003DA3DB /* FlapySceneViewController.swift */,
 				435244D5195AC04000D62D63 /* Storyboard.storyboard */,
+				257480E527578BEE007065BB /* Launch Screen.storyboard */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		435244D1195ABFFF00D62D63 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Shaders;
 			sourceTree = "<group>";
 		};
 		435244DA195AC06A00D62D63 /* Nodes */ = {
@@ -287,7 +284,7 @@
 		4304BFC3195455A800326016 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Andrew Kharchyshyn";
 				TargetAttributes = {
 					4304BFCA195455A800326016 = {
@@ -296,8 +293,8 @@
 				};
 			};
 			buildConfigurationList = 4304BFC6195455A800326016 /* Build configuration list for PBXProject "Metal Flaps" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -321,6 +318,7 @@
 				4333BA50196EE6D20008BC48 /* bg.jpg in Resources */,
 				43479286195AC83E00FA2962 /* Images.xcassets in Resources */,
 				4333BA55196EE7900008BC48 /* pip.png in Resources */,
+				257480E627578BEE007065BB /* Launch Screen.storyboard in Resources */,
 				4383CE14196BFAEE008B21D4 /* ram.txt in Resources */,
 				4333BA5E196EE85F0008BC48 /* pipe.txt in Resources */,
 				4333BA53196EE6D20008BC48 /* eye.png in Resources */,
@@ -349,9 +347,9 @@
 				4333BA42196EE6450008BC48 /* MetalViewController.swift in Sources */,
 				4333BA49196EE6450008BC48 /* Vertex.swift in Sources */,
 				4333BA60196EE85F0008BC48 /* RatioSquare.swift in Sources */,
+				257480E4275788C3007065BB /* VertexBufferGenerator.m in Sources */,
 				43A481221966A07D0079B3AF /* FlapyScene.swift in Sources */,
 				4333BA48196EE6450008BC48 /* UniformsBufferGenerator.m in Sources */,
-				4333BA4A196EE6450008BC48 /* VertexBufferGenerator.m in Sources */,
 				438C244A1966009A003DA3DB /* Ram.swift in Sources */,
 				4333BA5F196EE85F0008BC48 /* PipeWall.swift in Sources */,
 				4333BA43196EE6450008BC48 /* Node.swift in Sources */,
@@ -366,25 +364,38 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -396,10 +407,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -407,17 +420,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -425,15 +450,19 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -445,12 +474,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "MetalTryOut-Objc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kharchyshyn.andrew.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Metal Flaps";
 				SWIFT_OBJC_BRIDGING_HEADER = "MetalTryOut-Objc/Triangle-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Ofast";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -461,12 +495,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "MetalTryOut-Objc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kharchyshyn.andrew.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Metal Flaps";
 				SWIFT_OBJC_BRIDGING_HEADER = "MetalTryOut-Objc/Triangle-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Ofast";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc class Vertex: NSObject
+@objc public class Vertex: NSObject
 {
-    var x,y,z,u,v,nX,nY,nZ: Float
+    @objc public var x,y,z,u,v,nX,nY,nZ: Float
     
     
     init(x:Float, y:Float, z:Float, u:Float ,v:Float ,nX:Float ,nY:Float ,nZ:Float)
@@ -31,20 +31,27 @@ import UIKit
     
     init(text: String)
     {
-        var list = text.componentsSeparatedByString(" ")
-        
+        let list = text.components(separatedBy: " ") as [NSString]
         var counter = 0
         
-        self.x = ((list[counter++] as String) as NSString).floatValue
-        self.y = ((list[counter++] as String) as NSString).floatValue
-        self.z = ((list[counter++] as String) as NSString).floatValue
+        self.x = (list[counter]).floatValue
+        counter += 1
+        self.y = (list[counter]).floatValue
+        counter += 1
+        self.z = (list[counter]).floatValue
+        counter += 1
         
-        self.u = ((list[counter++] as String) as NSString).floatValue
-        self.v = ((list[counter++] as String) as NSString).floatValue
+        self.u = (list[counter]).floatValue
+        counter += 1
+        self.v = (list[counter]).floatValue
+        counter += 1
         
-        self.nX = ((list[counter++] as String) as NSString).floatValue
-        self.nY = ((list[counter++] as String) as NSString).floatValue
-        self.nZ = ((list[counter++] as String) as NSString).floatValue
+        self.nX = (list[counter]).floatValue
+        counter += 1
+        self.nY = (list[counter]).floatValue
+        counter += 1
+        self.nZ = (list[counter]).floatValue
+        counter += 1
         
         super.init()
     }

@@ -11,7 +11,7 @@ import Metal
 
 @objc class BaseEffect: NSObject
 {
-    var device:MTLDevice
+    let device: MTLDevice
     var renderPipelineState:MTLRenderPipelineState?
     var pipeLineDescriptor:MTLRenderPipelineDescriptor
     var projectionMatrix:AnyObject = Matrix4()
@@ -25,15 +25,14 @@ import Metal
         
         // Setup MTLRenderPipline descriptor object with vertex and fragment shader
         pipeLineDescriptor = MTLRenderPipelineDescriptor()
-        var library = device.newDefaultLibrary()!
-        pipeLineDescriptor.vertexFunction = library.newFunctionWithName(vertexShaderName)
-        pipeLineDescriptor.fragmentFunction = library.newFunctionWithName(fragmentShaderName)
-        pipeLineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.BGRA8Unorm
+        let library = device.makeDefaultLibrary()!
+        pipeLineDescriptor.vertexFunction = library.makeFunction(name: vertexShaderName)
+        pipeLineDescriptor.fragmentFunction = library.makeFunction(name: fragmentShaderName)
         pipeLineDescriptor.sampleCount = 4
-        pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.Depth32Float
         
-        pipeLineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
-        pipeLineDescriptor.stencilAttachmentPixelFormat = .Stencil8
+        pipeLineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        pipeLineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.depth32Float
+        pipeLineDescriptor.stencilAttachmentPixelFormat = MTLPixelFormat.invalid
         
         super.init()
     }
@@ -41,7 +40,7 @@ import Metal
     func compile() -> MTLRenderPipelineState?
     {
         // Compile the MTLRenderPipline object into immutable and cheap for use MTLRenderPipelineState
-        renderPipelineState = device.newRenderPipelineStateWithDescriptor(pipeLineDescriptor, error: nil)
+        renderPipelineState = try? device.makeRenderPipelineState(descriptor: pipeLineDescriptor)
         return renderPipelineState
     }
 }

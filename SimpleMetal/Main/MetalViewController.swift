@@ -15,23 +15,12 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     
     var metalView: MetalView!
     
-    let device: MTLDevice = MTLCreateSystemDefaultDevice()
+    let device: MTLDevice = MTLCreateSystemDefaultDevice()!
     var commandQ: MTLCommandQueue?
     var scene: Scene?
     var baseEffect: BaseEffect?
     
     var fpsLabel: UILabel!
-    
-    //UIViewController
-    required init(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
-    {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +28,9 @@ class MetalViewController: UIViewController,MetalViewProtocol {
         metalView = self.view as? MetalView
         metalView.metalViewDelegate = self
         
-        commandQ = device.newCommandQueue()
-        _displayLink = CADisplayLink(target: self, selector: Selector("_newFrame:"))
-        _displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        commandQ = device.makeCommandQueue()
+        _displayLink = CADisplayLink(target: self, selector: #selector(_newFrame))
+        _displayLink.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
     }
     
     deinit{
@@ -52,7 +41,7 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     
     func update(elapsed: CFTimeInterval)
     {
-        scene!.updateWithDelta(elapsed)
+        scene!.updateWithDelta(delta: elapsed)
     }
     
     //MetalViewController
@@ -75,8 +64,8 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     {
         if let commandQ = commandQ
         {
-            var matrix: Matrix4 = Matrix4()
-            scene!.render(commandQ, metalView: metalView, parentMVMatrix: matrix)
+            let matrix: Matrix4 = Matrix4()
+            scene!.render(commandQueue: commandQ, metalView: metalView, parentMVMatrix: matrix)
         }
     }
     
@@ -96,7 +85,7 @@ class MetalViewController: UIViewController,MetalViewProtocol {
     var _gameLoopPaused: Bool!
     
     
-    func _newFrame(displayLink: CADisplayLink){
+    @objc func _newFrame(displayLink: CADisplayLink){
         
         if _lastFrameTimestamp == nil
         {
@@ -111,6 +100,6 @@ class MetalViewController: UIViewController,MetalViewProtocol {
         _lastFrameTimestamp = displayLink.timestamp
         metalView.display()
         
-        update(elapsed)
+        update(elapsed: elapsed)
     }
 }

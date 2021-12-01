@@ -5,18 +5,13 @@ import UIKit
     init(baseEffect: BaseEffect)
     {
 
-        var verticesArray:Array<Vertex> = []
-        let path = NSBundle.mainBundle().pathForResource("pipe", ofType: "txt")
-            var possibleContent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)
+        let url = Bundle.main.url(forResource: "pipe", withExtension: "txt")!
+        let content = try! String(contentsOf: url, encoding: .utf8)
 
-            if let content = possibleContent {
-            var array = content.componentsSeparatedByString("\n")
-            array.removeLast()
-            for line in array{
-                var vertex = Vertex(text: line)
-                verticesArray.append(vertex)
-            }
-        }
+        var array = content.components(separatedBy: "\n")
+        array.removeLast()
+        
+        let verticesArray:Array<Vertex> = array.map { Vertex(text: $0) }
 
         super.init(name: "Pipe", baseEffect: baseEffect, vertices: verticesArray, vertexCount: verticesArray.count, textureName: "pip.png")
 
@@ -26,13 +21,13 @@ import UIKit
         self.shininess = 8.078431
 
         
-        self.setScale(0.5)
+        self.setScale(scale: 0.5)
     }
     
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
-        super.updateWithDelta(delta)
+        super.updateWithDelta(delta: delta)
 //        rotationZ += Float(M_PI/2) * Float(delta)
     }
 

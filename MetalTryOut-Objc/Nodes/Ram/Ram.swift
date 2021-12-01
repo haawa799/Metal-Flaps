@@ -5,24 +5,14 @@ import UIKit
     init(baseEffect: BaseEffect)
     {
 
-        var verticesArray:Array<Vertex> = []
-        let path = NSBundle.mainBundle().pathForResource("ram", ofType: "txt")
-            var possibleContent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)
+        let url = Bundle.main.url(forResource: "ram", withExtension: "txt")!
+        let content = try! String(contentsOf: url, encoding: .utf8)
 
-            if let content = possibleContent {
-            var array = content.componentsSeparatedByString("\n")
-            array.removeLast()
-            for line in array{
-                var vertex = Vertex(text: line)
-                verticesArray.append(vertex)
-            }
-            array.removeAll(keepCapacity: false)
-        }
-
-
+        var array = content.components(separatedBy: "\n")
+        array.removeLast()
+        
+        let verticesArray:Array<Vertex> = array.map { Vertex(text: $0) }
         super.init(name: "Ram", baseEffect: baseEffect, vertices: verticesArray, vertexCount: verticesArray.count, textureName: "char_ram_col.jpg")
-
-        verticesArray.removeAll(keepCapacity: false)
         
         self.ambientIntensity = 0.400000
         self.diffuseIntensity = 0.800000
@@ -33,7 +23,7 @@ import UIKit
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
-        super.updateWithDelta(delta)
+        super.updateWithDelta(delta: delta)
         
         //        rotationZ += Float(M_PI/10) * Float(delta)
 //        rotationZ += Float(M_PI/8) * Float(delta)

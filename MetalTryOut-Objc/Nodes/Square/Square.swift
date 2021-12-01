@@ -14,24 +14,21 @@ import UIKit
     {
         let defaultFileName = "bricks.jpeg"
         
-        var V0  = Vertex(x:  1.0, y: -1.0, z:  1.0, u: 1.0 , v: 0.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
-        var V1  = Vertex(x:  1.0, y:  1.0, z:  1.0, u: 1.0 , v: 1.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
-        var V2  = Vertex(x: -1.0, y:  1.0, z:  1.0, u: 0.0 , v: 1.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
-        var V3  = Vertex(x: -1.0, y: -1.0, z:  1.0, u: 0.0 , v: 0.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
+        let V0  = Vertex(x:  1.0, y: -1.0, z:  1.0, u: 1.0 , v: 0.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
+        let V1  = Vertex(x:  1.0, y:  1.0, z:  1.0, u: 1.0 , v: 1.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
+        let V2  = Vertex(x: -1.0, y:  1.0, z:  1.0, u: 0.0 , v: 1.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
+        let V3  = Vertex(x: -1.0, y: -1.0, z:  1.0, u: 0.0 , v: 0.0 , nX: 0.0 , nY: 1.0 , nZ: 0.0)
         
-        var verticesArray:Array<Vertex> = [V0, V1, V2, V2, V3, V0]
+        let verticesArray: Array<Vertex> = [V0, V1, V2, V2, V3, V0]
         
 //        var mTexture:METLTexture = METLTexture(resourceName: "bricks", ext: "jpeg")
 //        mTexture.finalize(baseEffect.device)
         
-        var texName:String
-        if textureName == nil
-        {
+        let texName: String
+        if let textureName = textureName {
+            texName = textureName
+        } else {
             texName = defaultFileName
-        }
-        else
-        {
-            texName = textureName!
         }
         
         super.init(name: "Square", baseEffect: baseEffect, vertices: verticesArray, vertexCount: verticesArray.count, textureName: texName)
@@ -39,9 +36,9 @@ import UIKit
     
     override func updateWithDelta(delta: CFTimeInterval)
     {
-        super.updateWithDelta(delta)
+        super.updateWithDelta(delta: delta)
         
-        var secsPerMove: Float = 2.0
-        positionX = sinf( Float(time) * 2.0 * Float(M_PI) / secsPerMove)
+        let secsPerMove: Float = 2.0
+        positionX = sinf( Float(time) * 2.0 * Float.pi / secsPerMove)
     }
 }

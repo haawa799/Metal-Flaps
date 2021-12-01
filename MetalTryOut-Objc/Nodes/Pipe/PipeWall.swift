@@ -31,29 +31,29 @@ class PipeWall: Node {
         
         super.init(name: name, baseEffect: baseEffect, vertices: nil, vertexCount: 0, textureName: nil)
         
-        upperPipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(90.0), y: 0.0, z: 0.0)
+        upperPipe.initialRotation.rotateAroundX(Matrix4.degrees(toRad: 90.0), y: 0.0, z: 0.0)
         upperPipe.initialWidth = width
         upperPipe.initialHeight = width
         upperPipe.initialDepth = width
         upperPipe.positionY = midPoint + heightBetween * 0.5
         
         
-        botPipe.initialRotation.rotateAroundX(Matrix4.degreesToRad(-90.0), y: 0.0, z: 0.0)
+        botPipe.initialRotation.rotateAroundX(Matrix4.degrees(toRad: -90.0), y: 0.0, z: 0.0)
         botPipe.initialWidth = width
         botPipe.initialHeight = width
         botPipe.initialDepth = width
         botPipe.positionY = midPoint - heightBetween * 0.5
         
-        self.addChild(upperPipe)
-        self.addChild(botPipe)
+        self.addChild(child: upperPipe)
+        self.addChild(child: botPipe)
 
     }
     
     func changeMidPointToRandomPoint(previous: PipeWall)
     {
         
-        var margin = height * 0.3
-        var h = (height - 2*margin)*0.5
+        let margin = height * 0.3
+        let h = (height - 2*margin)*0.5
         
         var posY = previous.midPoint + Float(drand48())*Float(h) - h*0.5
         if posY <= -(height*0.5 - margin)
@@ -72,25 +72,25 @@ class PipeWall: Node {
     
     func anyPipeIntersectsWithRect(ram:Node) -> Bool
     {
-        var l:Float = height
-        var k:Float = height*0.5 + midPoint
-        var q:Float = heightBetween*0.5
+        let l:Float = height
+        let k:Float = height*0.5 + midPoint
+        let q:Float = heightBetween*0.5
         
-        var botHeight:Float = k - q
-        var upHeight:Float = l - k - q
-        
-        
-        var ramR = nodeRect(ram)
-        
-        var rectWall = CGRect(x: CGFloat(positionX-width*0.5), y: CGFloat(0-height*0.5), width: CGFloat(width), height: CGFloat(height))
+        let botHeight:Float = k - q
+        let upHeight:Float = l - k - q
         
         
-        var rUp = CGRect(x: rectWall.origin.x, y: rectWall.origin.y + CGFloat(botHeight) + CGFloat(heightBetween), width: rectWall.size.width, height: CGFloat(upHeight))
+        let ramR = nodeRect(node: ram)
         
-        var rDown = CGRect(x: rectWall.origin.x, y: rectWall.origin.y, width: rectWall.size.width, height: CGFloat(botHeight))
+        let rectWall = CGRect(x: CGFloat(positionX-width*0.5), y: CGFloat(0-height*0.5), width: CGFloat(width), height: CGFloat(height))
         
         
-        var intersects = ramR.intersects(rDown) || ramR.intersects(rUp)
+        let rUp = CGRect(x: rectWall.origin.x, y: rectWall.origin.y + CGFloat(botHeight) + CGFloat(heightBetween), width: rectWall.size.width, height: CGFloat(upHeight))
+        
+        let rDown = CGRect(x: rectWall.origin.x, y: rectWall.origin.y, width: rectWall.size.width, height: CGFloat(botHeight))
+        
+        
+        let intersects = ramR.intersects(rDown) || ramR.intersects(rUp)
         return intersects
     }
     
@@ -106,10 +106,10 @@ class PipeWall: Node {
         {
             nodeHeight *= nodeInitialHeight
         }
-        var x = -nodeWidth*0.5 + node.positionX
-        var y =  node.positionY
+        let x = -nodeWidth*0.5 + node.positionX
+        let y =  node.positionY
         
-        var rect = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(nodeWidth), height: CGFloat(nodeHeight))
+        let rect = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(nodeWidth), height: CGFloat(nodeHeight))
         return rect
     }
 }

@@ -23,7 +23,7 @@ import Metal
 import QuartzCore
 
 
-@objc class Node: NSObject
+@objc public class Node: NSObject
 {
     
     var time:CFTimeInterval = 0.0
@@ -52,10 +52,10 @@ import QuartzCore
     var initialDepth:Float?// = 1.0
     
     //light specs
-    var diffuseIntensity: Float = 1.0
-    var ambientIntensity: Float = 1.0
-    var specularIntensity: Float = 1.0
-    var shininess: Float = 1.0
+    @objc public var diffuseIntensity: Float = 1.0
+    @objc public var ambientIntensity: Float = 1.0
+    @objc public var specularIntensity: Float = 1.0
+    @objc public var shininess: Float = 1.0
     
     
     // array of children nodes, you should never add or remove item from it directly, only throu addChild and removeChild
@@ -81,8 +81,8 @@ import QuartzCore
         //Setup texture if present
         if let texName = textureName
         {
-          var nameComponents = texName.componentsSeparatedByString(".")
-            var mTexture:METLTexture = METLTexture(resourceName: nameComponents[0], ext: nameComponents[1])
+            let nameComponents = texName.components(separatedBy: ".")
+            let mTexture: METLTexture = METLTexture(resourceName: nameComponents[0], ext: nameComponents[1])
             mTexture.finalize(baseEffect.device)
             self.texture = mTexture.texture
         }
@@ -95,15 +95,15 @@ import QuartzCore
         
         if let trueVertices = vertices
         {
-            self.vertexBuffer = generateVertexBuffer(trueVertices, vertexCount: vertexCount, device: baseEffect.device)
+            self.vertexBuffer = generateVertexBuffer(vertices: trueVertices, vertexCount: vertexCount, device: baseEffect.device)
         }
         
-        self.samplerState = generateSamplerStateForTexture(baseEffect.device)
+        self.samplerState = generateSamplerStateForTexture(device: baseEffect.device)
         
-        var depthStateDesc = MTLDepthStencilDescriptor()
-        depthStateDesc.depthCompareFunction = MTLCompareFunction.Less
-        depthStateDesc.depthWriteEnabled = true
-        depthState = baseEffect.device.newDepthStencilStateWithDescriptor(depthStateDesc)
+        let depthStateDesc = MTLDepthStencilDescriptor()
+        depthStateDesc.depthCompareFunction = MTLCompareFunction.less
+        depthStateDesc.isDepthWriteEnabled = true
+        depthState = baseEffect.device.makeDepthStencilState(descriptor: depthStateDesc)
     }
     
     
@@ -114,11 +114,11 @@ import QuartzCore
         
         if encoder == nil
         {
-            commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)!
+            commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
             commandEncoder.setDepthStencilState(depthState!)
             commandEncoder.setRenderPipelineState(baseEffect.renderPipelineState!)
-            commandEncoder.setFragmentSamplerState(samplerState!, atIndex: 0)
-            commandEncoder.setCullMode(MTLCullMode.Front)
+            commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+            commandEncoder.setCullMode(MTLCullMode.front)
         }
         else
         {
@@ -130,22 +130,21 @@ import QuartzCore
         
         for child in node.children
         {
-            var nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
-            nodeModelMatrix.multiplyLeft(parentMatrix as! Matrix4)
-            child.renderNode(child, parentMatrix: nodeModelMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformProvider)
+            let nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as? Matrix4)
+            _ = child.renderNode(node: child, parentMatrix: nodeModelMatrix, projectionMatrix: projectionMatrix, renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer, encoder: commandEncoder, uniformProvider: uniformProvider)
         }
         
         if node.vertexCount > 0
         {
-            var nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
-            nodeModelMatrix.multiplyLeft(parentMatrix as! Matrix4)
-            var uniform = node.getUniformsBufferFromUniformsProvider(uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
-            commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, atIndex: 0)
-            commandEncoder.setVertexBuffer(uniform, offset: 0, atIndex: 1)
-            commandEncoder.setFragmentTexture(node.texture, atIndex: 0)
-            commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, vertexStart: 0, vertexCount: node.vertexCount)
+            let nodeModelMatrix: Matrix4 = node.modelMatrix() as! Matrix4
+            nodeModelMatrix.multiplyLeft(parentMatrix as? Matrix4)
+            let uniform = node.getUniformsBufferFromUniformsProvider(provider: uniformProvider,mvMatrix: nodeModelMatrix, projMatrix: projectionMatrix, baseEffect: node.baseEffect)
+            commandEncoder.setVertexBuffer(node.vertexBuffer, offset: 0, index: 0)
+            commandEncoder.setVertexBuffer(uniform, offset: 0, index: 1)
+            commandEncoder.setFragmentTexture(node.texture, index: 0)
+            commandEncoder.drawPrimitives(type: MTLPrimitiveType.triangle, vertexStart: 0, vertexCount: node.vertexCount)
         }
-        
         
         commandEncoder.popDebugGroup()
         
@@ -163,7 +162,7 @@ import QuartzCore
     {
         numberOfSiblings -= child.numberOfSiblings
         var indexes = Array<Int>()
-        for (index, value) in enumerate(children) {
+        for (index, value) in children.enumerated() {
             if value == child
             {
                 indexes.append(index)
@@ -171,10 +170,10 @@ import QuartzCore
         }
         for index in indexes
         {
-            children.removeAtIndex(index)
+            children.remove(at: index)
         }
         
-        children.removeAtIndex(0)
+        children.remove(at: 0)
     }
     
     // Transformation
@@ -187,7 +186,7 @@ import QuartzCore
     
     func modelMatrix() -> AnyObject //AnyObject is used as a workaround against comiler error, waiting for fix in following betas
     {
-        var matrix = Matrix4()
+        let matrix = Matrix4()
         
         // Scale
         var height: Float = 1.0
@@ -208,12 +207,12 @@ import QuartzCore
         matrix.scale(scaleX * width, y: scaleY * height, z: scaleZ * depth)
         
         //Rotate
-        var initialRotationMatCopy: Matrix4 = (initialRotation as! Matrix4).copy()
+        let initialRotationMatCopy: Matrix4 = (initialRotation as! Matrix4).copy()
         matrix.rotateAroundX(rotationX, y: rotationY, z: rotationZ)
         matrix.multiplyLeft(initialRotationMatCopy)
         
         //Translation
-        var translMat = Matrix4()
+        let translMat = Matrix4()
         translMat.translate(positionX, y: positionY, z: positionZ)
         matrix.multiplyLeft(translMat)
         
@@ -227,48 +226,50 @@ import QuartzCore
         time += delta
         for child in children
         {
-            child.updateWithDelta(delta)
+            child.updateWithDelta(delta: delta)
         }
     }
     
     // Generators of buffers which are passed to GPU
     func generateSamplerStateForTexture(device: MTLDevice) -> MTLSamplerState?
     {
-        var pSamplerDescriptor:MTLSamplerDescriptor? = MTLSamplerDescriptor();
+        let pSamplerDescriptor:MTLSamplerDescriptor? = MTLSamplerDescriptor()
         
         if let sampler = pSamplerDescriptor
         {
-            sampler.minFilter             = MTLSamplerMinMagFilter.Nearest
-            sampler.magFilter             = MTLSamplerMinMagFilter.Nearest
-            sampler.mipFilter             = MTLSamplerMipFilter.NotMipmapped
+            sampler.minFilter             = MTLSamplerMinMagFilter.nearest
+            sampler.magFilter             = MTLSamplerMinMagFilter.nearest
+            sampler.mipFilter             = MTLSamplerMipFilter.notMipmapped
             sampler.maxAnisotropy         = 1
-            sampler.sAddressMode          = MTLSamplerAddressMode.ClampToEdge
-            sampler.tAddressMode          = MTLSamplerAddressMode.ClampToEdge
-            sampler.rAddressMode          = MTLSamplerAddressMode.ClampToEdge
+            sampler.sAddressMode          = MTLSamplerAddressMode.clampToEdge
+            sampler.tAddressMode          = MTLSamplerAddressMode.clampToEdge
+            sampler.rAddressMode          = MTLSamplerAddressMode.clampToEdge
             sampler.normalizedCoordinates = true
             sampler.lodMinClamp           = 0
-            sampler.lodMaxClamp           = FLT_MAX
+            sampler.lodMaxClamp           = Float.greatestFiniteMagnitude
         }
         else
         {
-            println(">> ERROR: Failed creating a sampler descriptor!")
+            print(">> ERROR: Failed creating a sampler descriptor!")
         }
         
-        return device.newSamplerStateWithDescriptor(pSamplerDescriptor!)
+        return device.makeSamplerState(descriptor: pSamplerDescriptor!)
     }
     
     func getUniformsBufferFromUniformsProvider(provider:AnyObject?,mvMatrix: AnyObject, projMatrix: AnyObject,baseEffect: BaseEffect) -> MTLBuffer?
     {
-        var mv:Matrix4 = mvMatrix as! Matrix4
-        var proj:Matrix4 = projMatrix as! Matrix4
-        var generator: UniformsBufferGenerator = provider as! UniformsBufferGenerator
-        uniformsBuffer = generator.bufferWithProjectionMatrix(proj, modelViewMatrix: mv, withBaseEffect: baseEffect, withModel: self)
+        let mv:Matrix4 = mvMatrix as! Matrix4
+        let proj:Matrix4 = projMatrix as! Matrix4
+        let generator: UniformsBufferGenerator = provider as! UniformsBufferGenerator
+        uniformsBuffer = generator.buffer(withProjectionMatrix: proj, modelViewMatrix: mv, with: baseEffect, withModel: self)
         return uniformsBuffer
     }
     
     func generateVertexBuffer(vertices: Array<Vertex>, vertexCount: Int, device: MTLDevice) -> MTLBuffer?
     {
-        vertexBuffer = VertexBufferGenerator.generateBufferVertices(vertices, vertexCount: vertexCount, device: device)
+        vertexBuffer = VertexBufferGenerator.generateBufferVertices(vertices,
+                                                                    vertexCount: vertexCount as NSNumber,
+                                                                    device: device)
         return vertexBuffer
     }
 }

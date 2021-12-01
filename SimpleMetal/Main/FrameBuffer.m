@@ -40,7 +40,7 @@
     _device = MTLCreateSystemDefaultDevice();
     
     _depthPixelFormat   = MTLPixelFormatDepth32Float;
-    _stencilPixelFormat = MTLPixelFormatStencil8;
+    _stencilPixelFormat = MTLPixelFormatInvalid;
     _sampleCount        = 4;
     
     _metalLayer.device          = _device;
@@ -72,11 +72,11 @@
             _metalLayer.drawableSize = drawableSize;
             _layerSizeDidUpdate = NO;
             
-            [_metalView.metalViewDelegate reshape:_metalView];
+            [_metalView.metalViewDelegate reshapeWithMetalView:_metalView];
         }
         
         // draw
-        [_metalView.metalViewDelegate render:_metalView];
+        [_metalView.metalViewDelegate renderWithMetalView:_metalView];
         _currentDrawable    = nil;
     }
 }
@@ -110,6 +110,8 @@
                                                                                            height: texture.height
                                                                                         mipmapped: NO];
             desc.textureType = MTLTextureType2DMultisample;
+            desc.storageMode = MTLStorageModePrivate;
+            desc.usage = MTLTextureUsageRenderTarget;
             
             // sample count was specified to the view by the renderer.
             // this must match the sample count given to any pipeline state using this render pass descriptor
@@ -155,6 +157,8 @@
             
             desc.textureType = (_sampleCount > 1) ? MTLTextureType2DMultisample : MTLTextureType2D;
             desc.sampleCount = _sampleCount;
+            desc.storageMode = MTLStorageModePrivate;
+            desc.usage = MTLTextureUsageRenderTarget;
             
             _depthTex = [_device newTextureWithDescriptor: desc];
             
@@ -186,6 +190,8 @@
             
             desc.textureType = (_sampleCount > 1) ? MTLTextureType2DMultisample : MTLTextureType2D;
             desc.sampleCount = _sampleCount;
+            desc.storageMode = MTLStorageModePrivate;
+            desc.usage = MTLTextureUsageRenderTarget;
             
             _stencilTex = [_device newTextureWithDescriptor: desc];
             
